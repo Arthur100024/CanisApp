@@ -14,10 +14,13 @@
         android:theme="@style/Theme.CanisApp"
         tools:targetApi="31">
         <activity
-            android:name=".EnterActivity"
+            android:name=".Activities.RegNameSurnameActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.EnterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
