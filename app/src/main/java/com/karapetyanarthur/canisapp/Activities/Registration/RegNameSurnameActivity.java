@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.karapetyanarthur.canisapp.R;
 
@@ -38,10 +39,19 @@ public class RegNameSurnameActivity extends AppCompatActivity {
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!name_et.getText().toString().equals("") && !surname_et.getText().toString().equals("")){
 // ДОБАВИТЬ СОХРАНЕНИЕ ДАННЫХ
-                changeActivity(".RegPhoneActivity");
+                    changeActivity(".RegPhoneActivity");
+                } else {
+                    showToast("Введите все поля!");
+                }
             }
         });
+    }
+
+    public void showToast(String toast_text){
+        Toast showMyToast = Toast.makeText(getApplicationContext(),toast_text,Toast.LENGTH_SHORT);
+        showMyToast.show();
     }
 
     public void changeActivity(String name_of_activity){
