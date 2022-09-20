@@ -15,11 +15,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Intent changeEnter = new Intent(".MapActivity");
-        startActivity(changeEnter);
+        changeActivity(".EnterActivity");
+    }
+
+    public void changeActivity(String name_of_activity){
+        Intent changeMyActivity = new Intent(name_of_activity);
+        startActivity(changeMyActivity);
     }
 }

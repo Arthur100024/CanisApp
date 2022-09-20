@@ -11,7 +11,7 @@ import com.karapetyanarthur.canisapp.R;
 
 public class EnterActivity extends AppCompatActivity {
 
-    Button log_in__btn;
+    Button log_in_btn;
     Button registration_btn;
 
     @Override
@@ -19,10 +19,10 @@ public class EnterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter);
 
-        log_in__btn.findViewById(R.id.log_in__btn);
-        registration_btn.findViewById(R.id.registration_btn);
+        log_in_btn = findViewById(R.id.log_in_btn);
+        registration_btn = findViewById(R.id.registration_btn);
 
-        log_in__btn.setOnClickListener(new View.OnClickListener() {
+        log_in_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 changeActivity(".LogInActivity");

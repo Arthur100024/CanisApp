@@ -14,11 +14,32 @@
         android:theme="@style/Theme.CanisApp"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.RegNameSurnameActivity"
-            android:exported="false" />
+            android:name=".Activities.Registration.RegPhoneActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name=".RegPhoneActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.Registration.RegNameSurnameActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name=".RegNameSurnameActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Activities.EnterActivity"
-            android:exported="false" />
+            android:exported="false">
+            <intent-filter>
+                <action android:name=".EnterActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Activities.MainActivity"
             android:exported="true">
