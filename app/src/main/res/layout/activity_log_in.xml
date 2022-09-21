@@ -6,17 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_background_clr"
-    tools:context=".Activities.Registration.RegPhoneActivity">
+    tools:context=".Activities.LogInActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/registration_tool_bar"
+        android:id="@+id/log_in_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".Activities.Registration.RegPhoneActivity">
+        tools:context=".Activities.EnterActivity">
 
         <Button
             android:id="@+id/back_btn"
@@ -30,19 +30,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/reg_phone_tv"
+        android:id="@+id/reg_name_surname_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
-        android:text="Номер телефона"
+        android:text="Вход в аккаунт"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registration_tool_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/log_in_tool_bar" />
 
     <EditText
         android:id="@+id/phone_et"
@@ -50,21 +51,55 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:ems="10"
-        android:inputType="phone"
+        android:inputType="textPersonName"
         android:hint="Телефон"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_phone_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/reg_name_surname_tv" />
+
+    <EditText
+        android:id="@+id/pass_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Пароль"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_et" />
+
+    <ImageButton
+        android:id="@+id/show_pass_btn"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/hide_password_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/pass_et"
+        app:layout_constraintStart_toEndOf="@+id/pass_et"
+        app:layout_constraintTop_toTopOf="@+id/pass_et" />
+
+    <ImageButton
+        android:id="@+id/hide_pass_btn"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/show_password_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/pass_et"
+        app:layout_constraintStart_toEndOf="@+id/pass_et"
+        app:layout_constraintTop_toTopOf="@+id/pass_et" />
 
     <Button
-        android:id="@+id/next_btn"
+        android:id="@+id/log_in_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
-        android:text="Далее"
+        android:text="Войти"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_et" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

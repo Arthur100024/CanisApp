@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Добро пожаловать!"
+            android:textColor="@color/black"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,14 +38,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Войдите или зарегистрируйтесь"
+        android:text="Войдите \n или \n зарегистрируйтесь"
+        android:gravity="center"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/enter_tool_bar" />
 
     <Button
-        android:id="@+id/log_in_btn"
+        android:id="@+id/act_log_in_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -54,14 +56,14 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_hello" />
 
     <Button
-        android:id="@+id/registration_btn"
+        android:id="@+id/act_registration_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Регистрация"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_in_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/act_log_in_btn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

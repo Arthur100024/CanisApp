@@ -30,7 +30,7 @@ public class RegPhoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //НЕ СОХРАНЯТЬ ДАННЫЕ
-                changeActivity("EnterActivity");
+                changeActivity(".EnterActivity");
             }
         });
 
