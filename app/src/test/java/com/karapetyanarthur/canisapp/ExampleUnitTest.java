@@ -1,4 +1,4 @@
-package com.karapetyanarthurcanisapp.canisapp;
+package com.karapetyanarthur.canisapp;
 
 import org.junit.Test;
 

@@ -1,11 +1,11 @@
-package com.karapetyanarthurcanisapp.canisapp.Activities;
+package com.karapetyanarthur.canisapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.karapetyanarthurcanisapp.canisapp.R;
+import com.karapetyanarthur.canisapp.R;
 
 public class MainActivity extends AppCompatActivity {
 

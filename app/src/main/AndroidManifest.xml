@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.karapetyanarthurcanisapp.canisapp">
+    package="com.karapetyanarthur.canisapp">
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CanisApp"
         tools:targetApi="31">
         <activity
-            android:name="com.karapetyanarthurcanisapp.canisapp.Activities.PermissionsActivity"
+            android:name="com.karapetyanarthur.canisapp.Activities.PermissionsActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".PermissionsActivity" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthurcanisapp.canisapp.Activities.LogInActivity"
+            android:name="com.karapetyanarthur.canisapp.Activities.LogInActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".LogInActivity" />
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthurcanisapp.canisapp.Activities.Registration.RegPasswordActivity"
+            android:name="com.karapetyanarthur.canisapp.Activities.Registration.RegPasswordActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".RegPasswordActivity" />
@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthurcanisapp.canisapp.Activities.Registration.RegPhoneActivity"
+            android:name="com.karapetyanarthur.canisapp.Activities.Registration.RegPhoneActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".RegPhoneActivity" />
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthurcanisapp.canisapp.Activities.Registration.RegNameSurnameActivity"
+            android:name="com.karapetyanarthur.canisapp.Activities.Registration.RegNameSurnameActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".RegNameSurnameActivity" />
@@ -59,7 +59,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthurcanisapp.canisapp.Activities.EnterActivity"
+            android:name="com.karapetyanarthur.canisapp.Activities.EnterActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".EnterActivity" />
@@ -68,7 +68,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthurcanisapp.canisapp.Activities.MainActivity"
+            android:name="com.karapetyanarthur.canisapp.Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

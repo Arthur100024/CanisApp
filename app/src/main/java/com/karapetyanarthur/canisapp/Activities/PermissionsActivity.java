@@ -1,4 +1,4 @@
-package com.karapetyanarthurcanisapp.canisapp.Activities;
+package com.karapetyanarthur.canisapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.karapetyanarthurcanisapp.canisapp.R;
+import com.karapetyanarthur.canisapp.R;
 
 public class PermissionsActivity extends AppCompatActivity {
 

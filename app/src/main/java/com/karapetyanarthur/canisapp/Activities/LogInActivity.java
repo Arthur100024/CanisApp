@@ -1,4 +1,4 @@
-package com.karapetyanarthurcanisapp.canisapp.Activities;
+package com.karapetyanarthur.canisapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.karapetyanarthurcanisapp.canisapp.R;
+import com.karapetyanarthur.canisapp.R;
 
 public class LogInActivity extends AppCompatActivity {
 
