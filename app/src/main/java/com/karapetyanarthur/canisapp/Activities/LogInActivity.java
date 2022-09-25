@@ -65,7 +65,7 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!phone_et.getText().toString().equals("") && !pass_et.getText().toString().equals("")) {
 //ДОБАВИТЬ ПРОВЕРКУ ЛОГИНА И ПАРОЛЯ
-                    changeActivity(".NavigationActivity");
+                    changeActivity(".MapsActivity");
                 }
             }
         });
