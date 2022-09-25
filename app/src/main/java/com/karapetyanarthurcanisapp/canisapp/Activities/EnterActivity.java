@@ -1,4 +1,4 @@
-package com.karapetyanarthur.canisapp.Activities;
+package com.karapetyanarthurcanisapp.canisapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthurcanisapp.canisapp.R;
 
 public class EnterActivity extends AppCompatActivity {
 

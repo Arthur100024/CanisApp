@@ -1,4 +1,4 @@
-package com.karapetyanarthur.canisapp.Activities.Registration;
+package com.karapetyanarthurcanisapp.canisapp.Activities.Registration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,21 +9,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthurcanisapp.canisapp.R;
 
-public class RegPhoneActivity extends AppCompatActivity {
+public class RegNameSurnameActivity extends AppCompatActivity {
 
     Button back_btn;
-    EditText phone_et;
+    EditText name_et;
+    EditText surname_et;
     Button next_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reg_phone);
+        setContentView(R.layout.activity_reg_name_surname);
 
         back_btn = findViewById(R.id.back_btn);
-        phone_et = findViewById(R.id.phone_et);
+        name_et = findViewById(R.id.name_et);
+        surname_et = findViewById(R.id. surname_et);
         next_btn = findViewById(R.id.next_btn);
 
         back_btn.setOnClickListener(new View.OnClickListener() {
@@ -37,9 +39,9 @@ public class RegPhoneActivity extends AppCompatActivity {
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!phone_et.getText().toString().equals("")) {
+                if (!name_et.getText().toString().equals("") && !surname_et.getText().toString().equals("")){
 // ДОБАВИТЬ СОХРАНЕНИЕ ДАННЫХ
-                    changeActivity(".RegPasswordActivity");// ДОБАВИТЬ СТРАНИЦУ ПАРОЛЯ
+                    changeActivity(".RegPhoneActivity");
                 } else {
                     showToast("Введите все поля!");
                 }

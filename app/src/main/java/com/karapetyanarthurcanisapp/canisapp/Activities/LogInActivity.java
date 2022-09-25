@@ -1,4 +1,4 @@
-package com.karapetyanarthur.canisapp.Activities;
+package com.karapetyanarthurcanisapp.canisapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthurcanisapp.canisapp.R;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -65,7 +65,7 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!phone_et.getText().toString().equals("") && !pass_et.getText().toString().equals("")) {
 //ДОБАВИТЬ ПРОВЕРКУ ЛОГИНА И ПАРОЛЯ
-                    changeActivity(".MapsActivity");
+                    changeActivity(".PermissionsActivity");
                 }
             }
         });

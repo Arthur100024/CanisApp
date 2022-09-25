@@ -1,4 +1,4 @@
-package com.karapetyanarthur.canisapp.Activities.Registration;
+package com.karapetyanarthurcanisapp.canisapp.Activities.Registration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthurcanisapp.canisapp.R;
 
 public class RegPasswordActivity extends AppCompatActivity {
 
