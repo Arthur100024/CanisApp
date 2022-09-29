@@ -15,7 +15,7 @@ import com.karapetyanarthur.canisapp.R;
 public class LogInActivity extends AppCompatActivity {
 
     Button back_btn;
-    EditText phone_et;
+    EditText login_et;
     EditText pass_et;
     ImageButton show_pass_btn;
     ImageButton hide_pass_btn;
@@ -27,7 +27,7 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         back_btn = findViewById(R.id.back_btn);
-        phone_et = findViewById(R.id.phone_et);
+        login_et = findViewById(R.id.login_et);
         pass_et = findViewById(R.id.pass_et);
         show_pass_btn = findViewById(R.id.show_pass_btn);
         hide_pass_btn = findViewById(R.id.hide_pass_btn);
@@ -63,7 +63,7 @@ public class LogInActivity extends AppCompatActivity {
         log_in_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!phone_et.getText().toString().equals("") && !pass_et.getText().toString().equals("")) {
+                if (!login_et.getText().toString().equals("") && !pass_et.getText().toString().equals("")) {
 //ДОБАВИТЬ ПРОВЕРКУ ЛОГИНА И ПАРОЛЯ
                     changeActivity(".PermissionsActivity");
                 }

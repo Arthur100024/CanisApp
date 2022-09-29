@@ -11,19 +11,19 @@ import android.widget.Toast;
 
 import com.karapetyanarthur.canisapp.R;
 
-public class RegPhoneActivity extends AppCompatActivity {
+public class RegLoginActivity extends AppCompatActivity {
 
     Button back_btn;
-    EditText phone_et;
+    EditText login_et;
     Button next_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reg_phone);
+        setContentView(R.layout.activity_reg_login);
 
         back_btn = findViewById(R.id.back_btn);
-        phone_et = findViewById(R.id.phone_et);
+        login_et = findViewById(R.id.login_et);
         next_btn = findViewById(R.id.next_btn);
 
         back_btn.setOnClickListener(new View.OnClickListener() {
@@ -37,9 +37,9 @@ public class RegPhoneActivity extends AppCompatActivity {
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!phone_et.getText().toString().equals("")) {
+                if (!login_et.getText().toString().equals("")) {
 // ДОБАВИТЬ СОХРАНЕНИЕ ДАННЫХ
-                    changeActivity(".RegLoginActivity");
+                    changeActivity(".RegPasswordActivity");
                 } else {
                     showToast("Введите все поля!");
                 }
@@ -56,5 +56,4 @@ public class RegPhoneActivity extends AppCompatActivity {
         Intent changeMyActivity = new Intent(name_of_activity);
         startActivity(changeMyActivity);
     }
-
 }

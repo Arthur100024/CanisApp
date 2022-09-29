@@ -3,6 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.karapetyanarthur.canisapp">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,7 +23,25 @@
         android:theme="@style/Theme.CanisApp"
         tools:targetApi="31">
         <activity
-            android:name="com.karapetyanarthur.canisapp.Activities.PermissionsActivity"
+            android:name=".Activities.Registration.RegLoginActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name=".RegLoginActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.MapSetLocActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name=".MapSetLocActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.PermissionsActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".PermissionsActivity" />
@@ -23,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthur.canisapp.Activities.LogInActivity"
+            android:name=".Activities.LogInActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".LogInActivity" />
@@ -32,7 +59,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthur.canisapp.Activities.Registration.RegPasswordActivity"
+            android:name=".Activities.Registration.RegPasswordActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".RegPasswordActivity" />
@@ -41,7 +68,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthur.canisapp.Activities.Registration.RegPhoneActivity"
+            android:name=".Activities.Registration.RegPhoneActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".RegPhoneActivity" />
@@ -50,7 +77,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthur.canisapp.Activities.Registration.RegNameSurnameActivity"
+            android:name=".Activities.Registration.RegNameSurnameActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".RegNameSurnameActivity" />
@@ -59,7 +86,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthur.canisapp.Activities.EnterActivity"
+            android:name=".Activities.EnterActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name=".EnterActivity" />
@@ -68,7 +95,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.karapetyanarthur.canisapp.Activities.MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
