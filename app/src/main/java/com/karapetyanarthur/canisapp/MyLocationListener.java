@@ -16,6 +16,8 @@ public class MyLocationListener implements LocationListener {
     public static Location imHere; // здесь будет всегда доступна самая последняя информация о местоположении пользователя.
     static String imHereString;
 
+    public static float my_latitude; //ШИРОТА
+    public static float my_longitude; //ДОЛГОТА
 
     public static void SetUpLocationListener(Context context) // это нужно запустить в самом начале работы программы
     {
@@ -37,6 +39,9 @@ public class MyLocationListener implements LocationListener {
 
         imHere = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         imHereString = String.valueOf(imHere);
+
+        my_latitude = (float) MyLocationListener.imHere.getLatitude();
+        my_longitude = (float) MyLocationListener.imHere.getLongitude();
     }
 
     @Override

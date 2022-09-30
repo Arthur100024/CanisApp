@@ -17,8 +17,6 @@ import com.karapetyanarthur.canisapp.R;
 
 public class PermissionsActivity extends AppCompatActivity {
 
-    public static float my_latitude; //ШИРОТА
-    public static float my_longitude; //ДОЛГОТА
     Button location_settings_btn;
 
     @Override
@@ -43,9 +41,6 @@ public class PermissionsActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-            my_latitude = (float) MyLocationListener.imHere.getLatitude();
-            my_longitude = (float) MyLocationListener.imHere.getLongitude();
 
             location_settings_btn.setVisibility(View.GONE);
 
