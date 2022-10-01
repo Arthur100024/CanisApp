@@ -13,6 +13,7 @@ import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
 import com.yandex.mapkit.mapview.MapView;
+import com.yandex.runtime.image.ImageProvider;
 
 public class MapSetLocActivity extends AppCompatActivity {
 
@@ -39,6 +40,9 @@ public class MapSetLocActivity extends AppCompatActivity {
                 new CameraPosition(TARGET_LOCATION, 18.0f, 0.0f, 0.0f),
                 new Animation(Animation.Type.SMOOTH, 10f),
                 null);
+
+        map_view.getMap().getMapObjects().addPlacemark(TARGET_LOCATION, ImageProvider.fromResource(R.drawable.hide_password_icon));
+
 
         apply_loc_btn.setOnClickListener(new View.OnClickListener() {
             @Override
