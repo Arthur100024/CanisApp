@@ -23,8 +23,18 @@
         android:theme="@style/Theme.CanisApp"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.Registration.RegLoginActivity"
+            android:name=".NavigationActivity"
             android:exported="false">
+            <intent-filter>
+                <action android:name=".NavigationActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.Registration.RegLoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name=".RegLoginActivity" />
 
@@ -33,7 +43,8 @@
         </activity>
         <activity
             android:name=".Activities.MapSetLocActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name=".MapSetLocActivity" />
 
@@ -42,7 +53,8 @@
         </activity>
         <activity
             android:name=".Activities.PermissionsActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name=".PermissionsActivity" />
 
@@ -51,7 +63,8 @@
         </activity>
         <activity
             android:name=".Activities.LogInActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name=".LogInActivity" />
 
@@ -60,7 +73,8 @@
         </activity>
         <activity
             android:name=".Activities.Registration.RegPasswordActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name=".RegPasswordActivity" />
 
@@ -69,7 +83,8 @@
         </activity>
         <activity
             android:name=".Activities.Registration.RegPhoneActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name=".RegPhoneActivity" />
 
@@ -78,7 +93,8 @@
         </activity>
         <activity
             android:name=".Activities.Registration.RegNameSurnameActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name=".RegNameSurnameActivity" />
 
@@ -87,7 +103,8 @@
         </activity>
         <activity
             android:name=".Activities.EnterActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name=".EnterActivity" />
 
@@ -96,7 +113,8 @@
         </activity>
         <activity
             android:name=".Activities.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
