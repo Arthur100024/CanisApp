@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         if (SharedPrefs.getString(LOGGED, "0").equals("0")){
             changeActivity(".EnterActivity");
         } else if (SharedPrefs.getString(LOGGED, "0").equals("1")){
+            NavigationActivity.changed_fragment = 3;
             changeActivity(".NavigationActivity");
         }
 

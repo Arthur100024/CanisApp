@@ -63,6 +63,7 @@ public class MapSetLocActivity extends AppCompatActivity {
                 SharedPreferences.Editor editorLogged = SharedPrefs.edit();
                 editorLogged.putString(LOGGED,"1");
                 editorLogged.apply();
+                NavigationActivity.changed_fragment = 3;
                 changeActivity(".NavigationActivity");
             }
         });
