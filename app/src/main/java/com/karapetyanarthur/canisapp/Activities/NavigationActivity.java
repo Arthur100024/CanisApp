@@ -9,7 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.karapetyanarthur.canisapp.ProfileFragment;
+import com.karapetyanarthur.canisapp.Activities.Fragments.AllMapFragment;
+import com.karapetyanarthur.canisapp.Activities.Fragments.ProfileFragment;
 import com.karapetyanarthur.canisapp.R;
 
 public class NavigationActivity extends AppCompatActivity {
@@ -32,7 +33,7 @@ public class NavigationActivity extends AppCompatActivity {
         if (changed_fragment == 1){
             //replaceFragment(new PetFragment());
         } else if (changed_fragment == 2){
-            //replaceFragment(new AllMapFragment());
+            replaceFragment(new AllMapFragment());
         } else if(changed_fragment == 3){
             replaceFragment(new ProfileFragment());
         }
@@ -47,7 +48,7 @@ public class NavigationActivity extends AppCompatActivity {
         map_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                replaceFragment(new AllMapFragment());
             }
         });
 

@@ -47,6 +47,7 @@ public class MapSetLocActivity extends AppCompatActivity {
             SharedPrefs = getSharedPreferences("prefs",MODE_PRIVATE);
         }
 
+        /*map_view.getMap().getMode().*/
 //ПЕРЕМЕЩЕНИЕ КАМЕРЫ
         map_view.getMap().move(
                 new CameraPosition(TARGET_LOCATION, 18.0f, 0.0f, 0.0f),
