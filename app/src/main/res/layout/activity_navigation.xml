@@ -8,7 +8,7 @@
     tools:context=".Activities.NavigationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/log_in_tool_bar"
+        android:id="@+id/navigation_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/white"
@@ -24,7 +24,17 @@
         app:layout_constraintBottom_toTopOf="@+id/bnb_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_in_tool_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/navigation_tool_bar" />
+
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/mapview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bnb_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navigation_tool_bar"
+        tools:ignore="Instantiatable" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bnb_layout"

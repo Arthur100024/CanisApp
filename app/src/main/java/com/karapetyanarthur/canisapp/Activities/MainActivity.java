@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPrefs = getSharedPreferences("prefs",MODE_PRIVATE);
 
+
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         if (SharedPrefs.getString(LOGGED, "0").equals("0")){
             changeActivity(".EnterActivity");
         } else if (SharedPrefs.getString(LOGGED, "0").equals("1")){
+            MyLocationListener.SetUpLocationListener(this);
             NavigationActivity.changed_fragment = 3;
             changeActivity(".NavigationActivity");
         }
