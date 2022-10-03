@@ -16,7 +16,9 @@ import android.widget.Button;
 
 import com.karapetyanarthur.canisapp.Activities.Fragments.ProfileFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.EditProfileFragment;
+import com.karapetyanarthur.canisapp.EditPetFragment;
 import com.karapetyanarthur.canisapp.MyLocationListener;
+import com.karapetyanarthur.canisapp.Activities.Fragments.PetFragment;
 import com.karapetyanarthur.canisapp.R;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
@@ -60,8 +62,11 @@ public class NavigationActivity extends AppCompatActivity {
 
         if (changed_fragment == 1){
             map_view.setVisibility(View.GONE);
-            //replaceFragment(new PetFragment());
-        } else if (changed_fragment == 2){
+            replaceFragment(new PetFragment());
+        } else if(changed_fragment == 11){
+            map_view.setVisibility(View.GONE);
+            replaceFragment(new EditPetFragment());
+        }else if (changed_fragment == 2){
             map_view.setVisibility(View.VISIBLE);
         } else if(changed_fragment == 3){
             map_view.setVisibility(View.GONE);
@@ -75,7 +80,7 @@ public class NavigationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 map_view.setVisibility(View.GONE);
-                //replaceFragment(new PetFragment());
+                replaceFragment(new PetFragment());
             }
         });
 
