@@ -18,6 +18,7 @@ import com.karapetyanarthur.canisapp.R;
 public class PermissionsActivity extends AppCompatActivity {
 
     Button location_settings_btn;
+    Button next_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,24 +26,34 @@ public class PermissionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_permissions);
 
         location_settings_btn = findViewById(R.id.location_settings_btn);
+        next_btn = findViewById(R.id.next_btn);
 
         MyLocationListener.SetUpLocationListener(this);
 
         location_settings_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 startActivity(new Intent(
                         android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                location_settings_btn.setVisibility(View.GONE);
+            }
+        });
+
+        next_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeActivity(".PermissionsActivity");
             }
         });
 
 
 //РАЗРЕШЕНИЕ ДЛЯ ГЕОЛОКАЦИИ
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                ||
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            location_settings_btn.setVisibility(View.GONE);
+            location_settings_btn.setVisibility(View.VISIBLE);
 
         }
 

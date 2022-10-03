@@ -65,7 +65,7 @@ public class MapSetLocActivity extends AppCompatActivity {
                 editorLogged.putString(LOGGED,"1");
                 editorLogged.apply();
                 NavigationActivity.changed_fragment = 3;
-                NavigationActivity.api_is_initialized = 0;
+                NavigationActivity.api_is_initialized = 1;
                 changeActivity(".NavigationActivity");
             }
         });

@@ -13,10 +13,9 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
 import com.karapetyanarthur.canisapp.Activities.Fragments.ProfileFragment;
-import com.karapetyanarthur.canisapp.EditProfileFragment;
+import com.karapetyanarthur.canisapp.Activities.Fragments.EditProfileFragment;
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.R;
 import com.yandex.mapkit.Animation;
