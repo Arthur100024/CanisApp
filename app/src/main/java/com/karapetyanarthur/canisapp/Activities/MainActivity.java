@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (SharedPrefs.getString(LOGGED, "0").equals("1")){
             MyLocationListener.SetUpLocationListener(this);
             NavigationActivity.changed_fragment = 3;
+            NavigationActivity.api_is_initialized = 0;
             changeActivity(".NavigationActivity");
         }
 

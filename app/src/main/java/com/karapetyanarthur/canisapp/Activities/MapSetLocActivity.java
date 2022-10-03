@@ -51,7 +51,7 @@ public class MapSetLocActivity extends AppCompatActivity {
 //ПЕРЕМЕЩЕНИЕ КАМЕРЫ
         map_view.getMap().move(
                 new CameraPosition(TARGET_LOCATION, 18.0f, 0.0f, 0.0f),
-                new Animation(Animation.Type.SMOOTH, 10f),
+                new Animation(Animation.Type.SMOOTH, 8f),
                 null);
 
 //ДОБАВЛЕНИЕ МАРКЕРА
@@ -65,6 +65,7 @@ public class MapSetLocActivity extends AppCompatActivity {
                 editorLogged.putString(LOGGED,"1");
                 editorLogged.apply();
                 NavigationActivity.changed_fragment = 3;
+                NavigationActivity.api_is_initialized = 0;
                 changeActivity(".NavigationActivity");
             }
         });

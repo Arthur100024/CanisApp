@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.karapetyanarthur.canisapp.Activities.Fragments.ProfileFragment;
+import com.karapetyanarthur.canisapp.EditProfileFragment;
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.R;
 import com.yandex.mapkit.Animation;
@@ -34,14 +35,18 @@ public class NavigationActivity extends AppCompatActivity {
     Button map_btn;
     Button profile_btn;
 
+    public static int api_is_initialized;
     public static int changed_fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        MapKitFactory.setApiKey("c79b2053-ca3c-453b-9709-fc9d680b8cf0");
-        MapKitFactory.initialize(this);
+        if (api_is_initialized == 0){
+            MapKitFactory.setApiKey("c79b2053-ca3c-453b-9709-fc9d680b8cf0");
+            MapKitFactory.initialize(this);
+            api_is_initialized = 1;
+        }
 
         setContentView(R.layout.activity_navigation);
 
@@ -62,12 +67,16 @@ public class NavigationActivity extends AppCompatActivity {
         } else if(changed_fragment == 3){
             map_view.setVisibility(View.GONE);
             replaceFragment(new ProfileFragment());
+        } else if(changed_fragment == 31){
+            map_view.setVisibility(View.GONE);
+            replaceFragment(new EditProfileFragment());
         }
 
         pet_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 map_view.setVisibility(View.GONE);
+                //replaceFragment(new PetFragment());
             }
         });
 
@@ -95,15 +104,6 @@ public class NavigationActivity extends AppCompatActivity {
         ft.commit();
     }
 
-    public void hideMap(){
-        /*FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.hide(mFragment);
-        ft.commit();*/
-
-
-    }
-
     public void changeActivity(String name_of_activity){
         Intent changeMyActivity = new Intent(name_of_activity);
         startActivity(changeMyActivity);
@@ -113,7 +113,7 @@ public class NavigationActivity extends AppCompatActivity {
 //ПЕРЕМЕЩЕНИЕ КАМЕРЫ
         map_view.getMap().move(
                 new CameraPosition(TARGET_LOCATION, 18.0f, 0.0f, 0.0f),
-                new Animation(Animation.Type.SMOOTH, 10f),
+                new Animation(Animation.Type.SMOOTH, 8f),
                 null);
 
 //ДОБАВЛЕНИЕ МАРКЕРА
