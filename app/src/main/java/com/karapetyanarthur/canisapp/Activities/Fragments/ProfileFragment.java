@@ -40,7 +40,7 @@ public class ProfileFragment extends Fragment {
 
     public void changeActivity(String name_of_activity){
         Intent changeMyActivity = new Intent(name_of_activity);
-        changeMyActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION); //ПЕРЕХОД БЕЗ АНИМАЦИИ
+        changeMyActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(changeMyActivity);
     }
 }
