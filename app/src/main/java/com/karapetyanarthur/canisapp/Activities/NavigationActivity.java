@@ -10,11 +10,17 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.karapetyanarthur.canisapp.Activities.Fragments.ProfileFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.EditProfileFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.EditPetFragment;
@@ -171,11 +177,35 @@ public class NavigationActivity extends AppCompatActivity {
         @Override
         public boolean onMapObjectTap(MapObject mapObject, Point point) {
 
-            Toast toast = Toast.makeText(
-                    getApplicationContext(),
-                    "Karapetyan Arthur 1024",
-                    Toast.LENGTH_SHORT);
-            toast.show();
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                    NavigationActivity.this,R.style.BottomSheetDialogTheme
+            );
+
+            View bottomSheetView = LayoutInflater.from(getApplicationContext())
+                    .inflate(R.layout.layout_bottom_sheet, findViewById(R.id.bottom_sheet_container));
+
+            TextView name_find_profile_tv = (TextView) bottomSheetView.findViewById(R.id.name_find_profile_tv);
+            name_find_profile_tv.setText("Arthur");
+
+            TextView surname_find_profile_tv = (TextView) bottomSheetView.findViewById(R.id.surname_find_profile_tv);
+            surname_find_profile_tv.setText("Karapetyan");
+
+            TextView number_find_profile_tv = (TextView) bottomSheetView.findViewById(R.id.number_find_profile_tv);
+            number_find_profile_tv.setText("+79167441755");
+
+            ImageButton to_WhatsApp_btn = (ImageButton) bottomSheetView.findViewById(R.id.to_WhatsApp_btn);
+            to_WhatsApp_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = "https://api.whatsapp.com/send?phone="+number_find_profile_tv.getText().toString();
+                    Intent WhatsAppIntent = new Intent(Intent.ACTION_VIEW);
+                    WhatsAppIntent.setData(Uri.parse(url));
+                    startActivity(WhatsAppIntent);
+                }
+            });
+
+            bottomSheetDialog.setContentView(bottomSheetView);
+            bottomSheetDialog.show();
 
             return true;
         }
