@@ -1,4 +1,4 @@
-package com.karapetyanarthur.canisapp.Activities;
+package com.karapetyanarthur.canisapp.Activities.Registration;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;

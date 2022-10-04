@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.MapSetLocActivity"
+            android:name=".Activities.Registration.MapSetLocActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -53,7 +53,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.PermissionsActivity"
+            android:name=".Activities.Registration.PermissionsActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <intent-filter>

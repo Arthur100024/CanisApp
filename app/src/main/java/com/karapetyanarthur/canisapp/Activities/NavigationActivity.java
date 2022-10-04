@@ -13,17 +13,25 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.karapetyanarthur.canisapp.Activities.Fragments.ProfileFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.EditProfileFragment;
-import com.karapetyanarthur.canisapp.EditPetFragment;
+import com.karapetyanarthur.canisapp.Activities.Fragments.EditPetFragment;
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.Activities.Fragments.PetFragment;
 import com.karapetyanarthur.canisapp.R;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
+import com.yandex.mapkit.geometry.Circle;
 import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
+import com.yandex.mapkit.map.CircleMapObject;
+import com.yandex.mapkit.map.MapObject;
+import com.yandex.mapkit.map.MapObjectCollection;
+import com.yandex.mapkit.map.MapObjectTapListener;
+import com.yandex.mapkit.map.PlacemarkMapObject;
+import com.yandex.mapkit.map.internal.PlacemarkMapObjectBinding;
 import com.yandex.mapkit.mapview.MapView;
 import com.yandex.runtime.image.ImageProvider;
 
@@ -38,6 +46,8 @@ public class NavigationActivity extends AppCompatActivity {
 
     public static int api_is_initialized;
     public static int changed_fragment;
+
+    private MapObjectCollection mapObjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +68,7 @@ public class NavigationActivity extends AppCompatActivity {
         map_view = (MapView) findViewById(R.id.mapview);
 
         map_view.setVisibility(View.GONE);
+
 
 
         if (changed_fragment == 1){
@@ -114,6 +125,8 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     public void getAllMapMarkers(){
+        mapObjects = map_view.getMap().getMapObjects().addCollection();
+
 //ПЕРЕМЕЩЕНИЕ КАМЕРЫ
         map_view.getMap().move(
                 new CameraPosition(TARGET_LOCATION, 18.0f, 0.0f, 0.0f),
@@ -121,8 +134,11 @@ public class NavigationActivity extends AppCompatActivity {
                 null);
 
 //ДОБАВЛЕНИЕ МАРКЕРА
-        map_view.getMap().getMapObjects().addPlacemark(TARGET_LOCATION, ImageProvider.fromBitmap(drawSimpleBitmap("Я")));
-
+        //map_view.getMap().getMapObjects().addPlacemark(TARGET_LOCATION, ImageProvider.fromBitmap(drawSimpleBitmap("Я")));
+        PlacemarkMapObject placemark = mapObjects.addPlacemark(TARGET_LOCATION);
+        placemark.setIcon(ImageProvider.fromBitmap(drawSimpleBitmap("Я")));
+        placemark.setUserData(new markerMapObjectUserData("Arthur", "Karapetyan","89167441755"));
+        placemark.addTapListener(markerMapObjectTapListener);
     }
 
     @Override
@@ -138,6 +154,33 @@ public class NavigationActivity extends AppCompatActivity {
         MapKitFactory.getInstance().onStop();
         super.onStop();
     }
+
+    private class markerMapObjectUserData {
+        final String profile_name;
+        final String profile_surname;
+        final String profile_phone;
+
+        markerMapObjectUserData(String profile_name, String profile_surname, String profile_phone) {
+            this.profile_name = profile_name;
+            this.profile_surname = profile_surname;
+            this.profile_phone = profile_phone;
+        }
+    }
+
+    private MapObjectTapListener markerMapObjectTapListener = new MapObjectTapListener() {
+        @Override
+        public boolean onMapObjectTap(MapObject mapObject, Point point) {
+
+            Toast toast = Toast.makeText(
+                    getApplicationContext(),
+                    "Karapetyan Arthur 1024",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+
+            return true;
+        }
+    };
+
 
     //БИТМАП ДЛЯ МАРКЕРА
     public Bitmap drawSimpleBitmap(String number) {

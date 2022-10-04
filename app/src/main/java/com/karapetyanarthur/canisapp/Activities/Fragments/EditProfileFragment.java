@@ -45,6 +45,15 @@ public class EditProfileFragment extends Fragment {
         save_changes_btn = view.findViewById(R.id.save_changes_btn);
 
 
+        change_profile_image_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent photoPick = new Intent(Intent.ACTION_GET_CONTENT);
+                startActivity(photoPick);
+            }
+        });
+
+
         save_changes_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

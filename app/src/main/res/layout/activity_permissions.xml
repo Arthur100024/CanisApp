@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_background_clr"
-    tools:context=".Activities.PermissionsActivity">
+    tools:context=".Activities.Registration.PermissionsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/log_in_tool_bar"
@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".Activities.PermissionsActivity">
+        tools:context=".Activities.Registration.PermissionsActivity">
 
         <!--<Button
             android:id="@+id/back_btn"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_background_clr"
-    tools:context=".Activities.MapSetLocActivity">
+    tools:context=".Activities.Registration.MapSetLocActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tool_bar"

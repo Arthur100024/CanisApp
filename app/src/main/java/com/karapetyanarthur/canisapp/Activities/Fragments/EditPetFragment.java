@@ -1,4 +1,4 @@
-package com.karapetyanarthur.canisapp;
+package com.karapetyanarthur.canisapp.Activities.Fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.karapetyanarthur.canisapp.R;
 
 public class EditPetFragment extends Fragment {
 
