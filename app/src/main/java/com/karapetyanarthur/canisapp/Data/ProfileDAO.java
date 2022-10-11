@@ -13,13 +13,13 @@ import java.util.List;
 public interface ProfileDAO {
 
     @Insert
-    public void insertNote(DBProfile dbProfile);
+    public void insertProfile(DBProfile dbProfile);
 
     @Update
-    public void updateNote(DBProfile dbProfile);
+    public void updateProfile(DBProfile dbProfile);
 
     @Delete
-    public void deleteNote(DBProfile dbProfile);
+    public void deleteProfile(DBProfile dbProfile);
 
     @Query("select * from profile")
     public LiveData<List<DBProfile>> getAllProfileLive();

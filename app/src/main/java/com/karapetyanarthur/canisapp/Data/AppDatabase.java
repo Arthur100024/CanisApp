@@ -5,6 +5,9 @@ import android.content.Context;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public abstract  class AppDatabase extends RoomDatabase {
 
     public abstract ProfileDAO getProfileDao();
@@ -15,11 +18,15 @@ public abstract  class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class){
                 if (INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class,"ProfileDB").fallbackToDestructiveMigration().build();
+                            AppDatabase.class,"ProfileDB").build();
                 }
             }
         }
         return INSTANCE;
     }
+
+    private static final int NUMBER_OF_THREADS = 4;
+    static final ExecutorService databaseWriteExecutor =
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
 }
