@@ -15,7 +15,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".Activities.NavigationActivity"/>
+        tools:context=".Activities.NavigationActivity">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/frame"
@@ -24,10 +26,32 @@
         app:layout_constraintBottom_toTopOf="@+id/bnb_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navigation_tool_bar"/>
+
+    <Button
+        android:id="@+id/edit_marker_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Поменять местоположение"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/frame"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/navigation_tool_bar" />
 
     <com.yandex.mapkit.mapview.MapView
         android:id="@+id/mapview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bnb_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navigation_tool_bar"
+        tools:ignore="Instantiatable" />
+
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/edit_marker_mapview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bnb_layout"

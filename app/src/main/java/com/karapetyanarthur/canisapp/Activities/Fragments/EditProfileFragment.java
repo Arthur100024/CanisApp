@@ -48,8 +48,8 @@ public class EditProfileFragment extends Fragment {
         change_profile_image_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent photoPick = new Intent(Intent.ACTION_GET_CONTENT);
-                startActivity(photoPick);
+                /*Intent photoPick = new Intent(Intent.ACTION_GET_CONTENT);
+                startActivity(photoPick);*/
             }
         });
 
