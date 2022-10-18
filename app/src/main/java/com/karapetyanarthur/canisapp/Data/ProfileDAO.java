@@ -12,6 +12,7 @@ import java.util.List;
 @Dao
 public interface ProfileDAO {
 
+
     @Insert
     public void insertProfile(DBProfile dbProfile);
 
@@ -21,10 +22,17 @@ public interface ProfileDAO {
     @Delete
     public void deleteProfile(DBProfile dbProfile);
 
-    @Query("select * from profile")
+    @Query("select * from profileTable")
     public LiveData<List<DBProfile>> getAllProfileLive();
 
-    @Query("select * from profile where profile_id ==:profile_id ")
-    public DBProfile getProfile(long profile_id);
+    @Query("select * from profileTable where profile_id ==:profile_id ")
+    public LiveData<DBProfile> getProfile(long profile_id);
+
+
+    @Query("SELECT profile_email FROM profileTable WHERE profile_id ==:profile_id")
+    public String getEmailProfile(long profile_id);
+
+ /*   @Query("SELECT profile_email FROM profileTable")
+    public LiveData<List<DBProfile>> getEmailProfile();*/
 
 }

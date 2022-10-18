@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "profile")
+@Entity(tableName = "profileTable")
 public class DBProfile {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "profile_id")

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.karapetyanarthur.canisapp"
@@ -36,6 +36,10 @@ dependencies {
     def room_version = "2.4.3"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    def lifecycle_version = "2.6.0-alpha02"
+    def arch_version = "2.1.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
 
     implementation 'com.yandex.android:maps.mobile:4.2.1-lite'
     implementation 'com.google.android.material:material:1.6.1'

@@ -1,18 +1,23 @@
 package com.karapetyanarthur.canisapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.karapetyanarthur.canisapp.Data.DBProfile;
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences SharedPrefs;
     public static final String LOGGED = "IsUserLogged";
+
+    //AppViewModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPrefs = getSharedPreferences("prefs",MODE_PRIVATE);
 
+        /*model = new ViewModelProvider(this).get(AppViewModel.class);
 
+        model.insert(new DBProfile(0,"justfrog44@gmail.com",
+                "Arthur","Karapetyan",
+                "89167441755","20"));*/
 
         try {
             Thread.sleep(3000);

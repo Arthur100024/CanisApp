@@ -10,11 +10,13 @@ import java.util.List;
 public class AppRepository {
     private ProfileDAO profileDAO;
     private LiveData<List<DBProfile>> allProfile;
+    private String dbEmailProfile;
 
     public AppRepository(Application application){
         AppDatabase appDatabase = AppDatabase.getInstance(application);
         profileDAO = appDatabase.getProfileDao();
         allProfile = profileDAO.getAllProfileLive();
+        dbEmailProfile = profileDAO.getEmailProfile(0);
     }
 
     // Methods for the local database
@@ -38,6 +40,13 @@ public class AppRepository {
 
     public LiveData<List<DBProfile>> getAllProfile(){
         return allProfile;
+    }
+
+
+
+
+    public String getEmailProfile(){
+        return dbEmailProfile;
     }
 
 }
