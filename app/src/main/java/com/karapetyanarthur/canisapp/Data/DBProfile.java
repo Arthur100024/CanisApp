@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.karapetyanarthur.canisapp.Model.ProfileModel;
+
 @Entity(tableName = "profileTable")
 public class DBProfile {
     @PrimaryKey(autoGenerate = true)
@@ -79,5 +81,19 @@ public class DBProfile {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public static DBProfile convertFromProfile(ProfileModel profileModel) {
+        DBProfile dbProfile = new DBProfile();
+
+        dbProfile.setId(profileModel.getId());
+        dbProfile.setName(profileModel.getName());
+        dbProfile.setEmail(profileModel.getEmail());
+        dbProfile.setSurname(profileModel.getSurname());
+        dbProfile.setPhone(profileModel.getPhone());
+        dbProfile.setAge(profileModel.getAge());
+
+
+        return dbProfile;
     }
 }

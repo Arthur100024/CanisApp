@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.karapetyanarthur.canisapp.Activities.NavigationActivity;
 import com.karapetyanarthur.canisapp.Data.DBProfile;
+import com.karapetyanarthur.canisapp.Model.ProfileModel;
 import com.karapetyanarthur.canisapp.R;
 import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
 
@@ -72,7 +73,7 @@ public class EditProfileFragment extends Fragment {
                         phone_profile_et.getText().toString(),
                         age_profile_et.getText().toString()));*/
 
-                DBProfile profile = new DBProfile();
+                ProfileModel profile = new ProfileModel();
                 profile.setId(0);
                 profile.setEmail(email_profile_et.getText().toString());
                 profile.setName(name_profile_et.getText().toString());

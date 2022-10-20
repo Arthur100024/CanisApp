@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import com.karapetyanarthur.canisapp.Data.AppRepository;
 import com.karapetyanarthur.canisapp.Data.DBProfile;
 import com.karapetyanarthur.canisapp.Data.ProfileDAO;
+import com.karapetyanarthur.canisapp.Model.ProfileModel;
 
 import java.util.List;
 
@@ -25,15 +26,15 @@ public class AppViewModel extends AndroidViewModel {
     }
 
     // Methods ViewModel for the local database
-    public void insert(DBProfile profile){
+    public void insert(ProfileModel profile){
         appRepository.insert(profile);
     }
 
-    public void update(DBProfile profile){
+    public void update(ProfileModel profile){
         appRepository.update(profile);
     }
 
-    public void delete(DBProfile profile){
+    public void delete(ProfileModel profile){
         appRepository.delete(profile);
     }
 
