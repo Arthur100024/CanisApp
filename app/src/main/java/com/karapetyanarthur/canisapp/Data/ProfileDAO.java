@@ -28,11 +28,4 @@ public interface ProfileDAO {
     @Query("select * from profileTable where profile_id ==:profile_id ")
     public LiveData<DBProfile> getProfile(long profile_id);
 
-
-    @Query("SELECT profile_email FROM profileTable WHERE profile_id ==:profile_id")
-    public String getEmailProfile(long profile_id);
-
- /*   @Query("SELECT profile_email FROM profileTable")
-    public LiveData<List<DBProfile>> getEmailProfile();*/
-
 }

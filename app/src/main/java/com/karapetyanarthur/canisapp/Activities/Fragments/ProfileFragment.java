@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,10 +63,13 @@ public class ProfileFragment extends Fragment {
         model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<DBProfile>>() {
             @Override
             public void onChanged(List<DBProfile> dbProfiles) {
-                //email_profile.setText(dbProfiles.toString());
-               //email_profile.setText(model.getEmailProfile());
-                System.out.println(model.getEmailProfile());
-                //email_profile.setText(model.getProfileMV().getEmail());
+                email_profile.setText(dbProfiles.get(6).getEmail());
+                name_profile.setText(dbProfiles.get(6).getName());
+                surname_profile.setText(dbProfiles.get(6).getSurname());
+                phone_profile.setText(dbProfiles.get(6).getPhone());
+                age_profile.setText(dbProfiles.get(6).getAge());
+                Log.d("User_Data", String.valueOf(dbProfiles.size()));
+
             }
         });
 

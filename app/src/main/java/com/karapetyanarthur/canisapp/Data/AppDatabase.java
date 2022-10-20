@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {DBProfile.class}, version = 1)
+@Database(entities = {DBProfile.class}, version = 2)
 public abstract  class AppDatabase extends RoomDatabase {
 
     private static final int NUMBER_OF_THREADS = 4;
@@ -24,7 +24,7 @@ public abstract  class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class){
                 if (INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class,"ProfileDB").fallbackToDestructiveMigration().build();
+                            AppDatabase.class,"ProfileDB").allowMainThreadQueries().build();
                 }
             }
         }

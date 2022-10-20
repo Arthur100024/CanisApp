@@ -17,13 +17,11 @@ public class AppViewModel extends AndroidViewModel {
     private final AppRepository appRepository;
     private LiveData<List<DBProfile>> getAllProfile;
     private DBProfile dbProfileMV;
-    private String dbEmailProfile;
 
     public AppViewModel(@NonNull Application application) {
         super(application);
         appRepository = new AppRepository(application);
         getAllProfile = appRepository.getAllProfile();
-        dbEmailProfile = appRepository.getEmailProfile();
     }
 
     // Methods ViewModel for the local database
@@ -51,10 +49,6 @@ public class AppViewModel extends AndroidViewModel {
 
     public void setProfileMV(DBProfile dbProfile) {
         dbProfileMV = dbProfile;
-    }
-
-    public String getEmailProfile(){
-        return dbEmailProfile;
     }
 
 }

@@ -95,6 +95,9 @@ public class NavigationActivity extends AppCompatActivity {
         map_view = (MapView) findViewById(R.id.mapview);
         edit_marker_mapview = (MapView) findViewById(R.id.edit_marker_mapview);
 
+        edit_marker_mapview.onStart();
+        map_view.onStart();
+
         map_view.setVisibility(View.GONE);
         edit_marker_mapview.setVisibility(View.GONE);
         edit_marker_btn.setVisibility(View.GONE);
@@ -264,8 +267,6 @@ public class NavigationActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         MapKitFactory.getInstance().onStart();
-        edit_marker_mapview.onStart();
-        map_view.onStart();
     }
 
     @Override
