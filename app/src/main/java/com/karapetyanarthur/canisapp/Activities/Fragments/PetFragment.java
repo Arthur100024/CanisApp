@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.karapetyanarthur.canisapp.Activities.NavigationActivity;
+import com.karapetyanarthur.canisapp.Data.DBPet;
+import com.karapetyanarthur.canisapp.Data.DBProfile;
 import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
+
+import java.util.List;
 
 public class PetFragment extends Fragment {
 
@@ -22,6 +30,9 @@ public class PetFragment extends Fragment {
     TextView breed_pet;
     TextView age_pet;
     Button edit_pet_btn;
+
+    AppViewModel model;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +47,23 @@ public class PetFragment extends Fragment {
         breed_pet = view.findViewById(R.id.breed_pet);
         age_pet = view.findViewById(R.id.age_pet);
         edit_pet_btn = view.findViewById(R.id.edit_pet_btn);
+
+        model = new ViewModelProvider(this).get(AppViewModel.class);
+
+        model.getAllPet().observe(getViewLifecycleOwner(), new Observer<List<DBPet>>() {
+            @Override
+            public void onChanged(List<DBPet> dbPets) {
+                if (dbPets.size() != 0){
+                    nickname_pet.setText(dbPets.get(dbPets.size() - 1).getNickname());
+                    breed_pet.setText(dbPets.get(dbPets.size() - 1).getBreed());
+                    age_pet.setText(dbPets.get(dbPets.size() - 1).getAge());
+
+                }
+
+                Log.d("User_Data", String.valueOf(dbPets.size()));
+
+            }
+        });
 
         edit_pet_btn.setOnClickListener(new View.OnClickListener() {
             @Override

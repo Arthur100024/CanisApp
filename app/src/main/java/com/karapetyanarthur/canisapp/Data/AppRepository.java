@@ -5,21 +5,23 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.karapetyanarthur.canisapp.Model.PetModel;
 import com.karapetyanarthur.canisapp.Model.ProfileModel;
 
 import java.util.List;
 
 public class AppRepository {
     private ProfileDAO profileDAO;
+    private PetDAO petDAO;
     private LiveData<List<DBProfile>> allProfile;
 
     public AppRepository(Application application){
         AppDatabase appDatabase = AppDatabase.getInstance(application);
         profileDAO = appDatabase.getProfileDao();
-        allProfile = profileDAO.getAllProfileLive();
+        petDAO = appDatabase.getPetDAO();
     }
 
-    // Methods for the local database
+    // ProfileROOM
     public void insert(ProfileModel profile){
         DBProfile dbProfile = DBProfile.convertFromProfile(profile);
         AppDatabase.databaseWriteExecutor.execute(() -> {
@@ -42,8 +44,35 @@ public class AppRepository {
     }
 
     public LiveData<List<DBProfile>> getAllProfile(){
-        return allProfile;
+        return profileDAO.getAllProfileLive();
     }
 
+
+
+    // PetROOM
+    public void insert(PetModel pet){
+        DBPet dbPet = DBPet.convertFromPet(pet);
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            petDAO.insertPet(dbPet);
+        });
+    }
+
+    public void update(PetModel pet){
+        DBPet dbPet = DBPet.convertFromPet(pet);
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            petDAO.updatePet(dbPet);
+        });
+    }
+
+    public void delete(PetModel pet){
+        DBPet dbPet = DBPet.convertFromPet(pet);
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            petDAO.deletePet(dbPet);
+        });
+    }
+
+    public LiveData<List<DBPet>> getAllPet(){
+        return petDAO.getAllPetLive();
+    }
 
 }

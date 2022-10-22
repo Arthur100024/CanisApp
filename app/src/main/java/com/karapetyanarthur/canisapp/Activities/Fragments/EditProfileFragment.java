@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,8 @@ import com.karapetyanarthur.canisapp.Data.DBProfile;
 import com.karapetyanarthur.canisapp.Model.ProfileModel;
 import com.karapetyanarthur.canisapp.R;
 import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
+
+import java.util.List;
 
 public class EditProfileFragment extends Fragment {
 
@@ -53,6 +57,22 @@ public class EditProfileFragment extends Fragment {
 
         model = new ViewModelProvider(this).get(AppViewModel.class);
 
+        model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<DBProfile>>() {
+            @Override
+            public void onChanged(List<DBProfile> dbProfiles) {
+                if (dbProfiles.size() != 0){
+                    email_profile_et.setText(dbProfiles.get(dbProfiles.size() - 1).getEmail());
+                    name_profile_et.setText(dbProfiles.get(dbProfiles.size() - 1).getName());
+                    surname_profile_et.setText(dbProfiles.get(dbProfiles.size() - 1).getSurname());
+                    phone_profile_et.setText(dbProfiles.get(dbProfiles.size() - 1).getPhone());
+                    age_profile_et.setText(dbProfiles.get(dbProfiles.size() - 1).getAge());
+                }
+
+                Log.d("User_Data", String.valueOf(dbProfiles.size()));
+
+            }
+        });
+
         change_profile_image_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,11 +87,6 @@ public class EditProfileFragment extends Fragment {
             public void onClick(View v) {
 
 // Сохранение данных в Room
-                /*model.insert(new DBProfile(0,email_profile_et.getText().toString(),
-                        name_profile_et.getText().toString(),
-                        surname_profile_et.getText().toString(),
-                        phone_profile_et.getText().toString(),
-                        age_profile_et.getText().toString()));*/
 
                 ProfileModel profile = new ProfileModel();
                 profile.setId(0);

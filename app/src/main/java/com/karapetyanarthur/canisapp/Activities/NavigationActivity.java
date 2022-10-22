@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -32,6 +33,7 @@ import com.karapetyanarthur.canisapp.Activities.Fragments.EditPetFragment;
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.Activities.Fragments.PetFragment;
 import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Circle;
@@ -73,6 +75,8 @@ public class NavigationActivity extends AppCompatActivity {
     PlacemarkMapObject myPlacemark;
     PlacemarkMapObject clientPlacemark;
     PlacemarkMapObject cynologistPlacemark;
+
+    AppViewModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +173,7 @@ public class NavigationActivity extends AppCompatActivity {
                 map_view.setVisibility(View.GONE);
                 edit_marker_btn.setVisibility(View.GONE);
                 edit_marker_mapview.setVisibility(View.VISIBLE);
-                changeMapMarker();
+                //changeMapMarker();
             }
         });
     }
@@ -187,6 +191,9 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     public void getAllMapMarkers(){
+
+
+
 //МОЙ МАРКЕР ___ НАЧАЛО
         myMarkerMapObject = map_view.getMap().getMapObjects().addCollection();
 //ПЕРЕМЕЩЕНИЕ КАМЕРЫ
@@ -199,7 +206,7 @@ public class NavigationActivity extends AppCompatActivity {
         myPlacemark = myMarkerMapObject.addPlacemark(TARGET_LOCATION);
         myPlacemark.setIcon(ImageProvider.fromBitmap(drawMyBitmap("Я")));
         myPlacemark.setUserData(new markerMapObjectUserData("Arthur", "Karapetyan","89167441755"));
-        myPlacemark.addTapListener(markerMapObjectTapListener);
+        myPlacemark.addTapListener(MyMarkerMapObjectTapListener);
 //МОЙ МАРКЕР ___ КОНЕЦ
 
 
@@ -210,7 +217,7 @@ public class NavigationActivity extends AppCompatActivity {
         clientPlacemark = clientCollection.addPlacemark(new Point(MyLocationListener.my_latitude+0.0003,MyLocationListener.my_longitude+0.0003));
         clientPlacemark.setIcon(ImageProvider.fromBitmap(drawClientBitmap()));
         clientPlacemark.setUserData(new markerMapObjectUserData(" ", " "," "));
-        clientPlacemark.addTapListener(markerMapObjectTapListener);
+        //clientPlacemark.addTapListener(markerMapObjectTapListener);
 //МАРКЕР КЛИЕНТОВ ___ НАЧАЛО
 
 
@@ -221,12 +228,12 @@ public class NavigationActivity extends AppCompatActivity {
         cynologistPlacemark = cynologistCollection.addPlacemark(new Point(12,12));
         cynologistPlacemark.setIcon(ImageProvider.fromBitmap(drawCynologistBitmap()));
         cynologistPlacemark.setUserData(new markerMapObjectUserData(" ", " "," "));
-        cynologistPlacemark.addTapListener(markerMapObjectTapListener);
+        //cynologistPlacemark.addTapListener(markerMapObjectTapListener);
 //МАРКЕР КИНОЛОГОВ ___ КОНЕЦ
     }
 
 
-//ИЗМЕНЕНИЕ МЕСТОПОЛОЖЕНИЯ ___ НАЧАЛО
+/*//ИЗМЕНЕНИЕ МЕСТОПОЛОЖЕНИЯ ___ НАЧАЛО
     public void changeMapMarker(){
 
         myMarkerMapObject = edit_marker_mapview.getMap().getMapObjects().addCollection();
@@ -239,12 +246,12 @@ public class NavigationActivity extends AppCompatActivity {
         myPlacemark.setIcon(ImageProvider.fromBitmap(drawMyBitmap("Я")));
         myPlacemark.isDraggable();
         myPlacemark.setDraggable(true);
-        myPlacemark.setDragListener(myMarkerDragListener);
+        //myPlacemark.setDragListener(myMarkerDragListener);
 
-    }
+    }*/
 
 
-    public MapObjectDragListener myMarkerDragListener = new MapObjectDragListener() {
+    /*public MapObjectDragListener myMarkerDragListener = new MapObjectDragListener() {
         @Override
         public void onMapObjectDragStart(@NonNull MapObject mapObject) {
 
@@ -260,7 +267,7 @@ public class NavigationActivity extends AppCompatActivity {
             MyLocationListener.my_latitude = 3;
             MyLocationListener.my_longitude = 3;
         }
-    };
+    };*/
 //ИЗМЕНЕНИЕ МЕСТОПОЛОЖЕНИЯ ___ КОНЕЦ
 
     @Override
@@ -289,11 +296,10 @@ public class NavigationActivity extends AppCompatActivity {
         }
     }
 
-    private MapObjectTapListener markerMapObjectTapListener = new MapObjectTapListener() {
+    private MapObjectTapListener MyMarkerMapObjectTapListener = new MapObjectTapListener() {
         @Override
         public boolean onMapObjectTap(MapObject mapObject, Point point) {
 
-            //String name_find_profile_str = ;
 
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
                     NavigationActivity.this,R.style.BottomSheetDialogTheme
@@ -312,7 +318,9 @@ public class NavigationActivity extends AppCompatActivity {
             number_find_profile_tv.setText(" ");
 
             ImageButton to_WhatsApp_btn = (ImageButton) bottomSheetView.findViewById(R.id.to_WhatsApp_btn);
-            to_WhatsApp_btn.setOnClickListener(new View.OnClickListener() {
+            to_WhatsApp_btn.setVisibility(View.GONE);
+
+            /*to_WhatsApp_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String url = "https://api.whatsapp.com/send?phone="+number_find_profile_tv.getText().toString();
@@ -320,7 +328,7 @@ public class NavigationActivity extends AppCompatActivity {
                     WhatsAppIntent.setData(Uri.parse(url));
                     startActivity(WhatsAppIntent);
                 }
-            });
+            });*/
 
             bottomSheetDialog.setContentView(bottomSheetView);
             bottomSheetDialog.show();

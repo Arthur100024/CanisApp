@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {DBProfile.class}, version = 2)
+@Database(entities = {DBProfile.class, DBPet.class}, version = 1)
 public abstract  class AppDatabase extends RoomDatabase {
 
     private static final int NUMBER_OF_THREADS = 4;
@@ -17,6 +17,7 @@ public abstract  class AppDatabase extends RoomDatabase {
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public abstract ProfileDAO getProfileDao();
+    public abstract PetDAO getPetDAO();
 
     private static volatile AppDatabase INSTANCE;
     public static AppDatabase getInstance(Context context){
@@ -24,7 +25,7 @@ public abstract  class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class){
                 if (INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class,"ProfileDB").allowMainThreadQueries().build();
+                            AppDatabase.class,"CanisApp_database").allowMainThreadQueries().build();
                 }
             }
         }

@@ -63,11 +63,14 @@ public class ProfileFragment extends Fragment {
         model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<DBProfile>>() {
             @Override
             public void onChanged(List<DBProfile> dbProfiles) {
-                email_profile.setText(dbProfiles.get(6).getEmail());
-                name_profile.setText(dbProfiles.get(6).getName());
-                surname_profile.setText(dbProfiles.get(6).getSurname());
-                phone_profile.setText(dbProfiles.get(6).getPhone());
-                age_profile.setText(dbProfiles.get(6).getAge());
+                if (dbProfiles.size() != 0){
+                    email_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getEmail());
+                    name_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getName());
+                    surname_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getSurname());
+                    phone_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getPhone());
+                    age_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getAge());
+                }
+
                 Log.d("User_Data", String.valueOf(dbProfiles.size()));
 
             }
