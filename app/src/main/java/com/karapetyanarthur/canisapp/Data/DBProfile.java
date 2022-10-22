@@ -103,7 +103,7 @@ public class DBProfile {
         dbProfile.setSurname(profileModel.getSurname());
         dbProfile.setPhone(profileModel.getPhone());
         dbProfile.setAge(profileModel.getAge());
-
+        dbProfile.setImage(profileModel.getImage());
 
         return dbProfile;
     }

@@ -10,13 +10,16 @@ public class PetModel {
 
     private String age;
 
+    private String image;
+
     public PetModel(){}
 
-    public PetModel(long id, String nickname, String breed, String age){
+    public PetModel(long id, String nickname, String breed, String age, String image){
         this.id = id;
         this.nickname = nickname;
         this.breed = breed;
         this.age = age;
+        this.image = image;
     }
 
     public long getId() {
@@ -49,5 +52,13 @@ public class PetModel {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

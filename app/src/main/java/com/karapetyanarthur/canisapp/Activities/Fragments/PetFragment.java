@@ -1,6 +1,7 @@
 package com.karapetyanarthur.canisapp.Activities.Fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -57,7 +58,10 @@ public class PetFragment extends Fragment {
                     nickname_pet.setText(dbPets.get(dbPets.size() - 1).getNickname());
                     breed_pet.setText(dbPets.get(dbPets.size() - 1).getBreed());
                     age_pet.setText(dbPets.get(dbPets.size() - 1).getAge());
-
+                    if (dbPets.get(dbPets.size() - 1).getImage() != null){
+                        pet_image_iv.setBackground(null);
+                        pet_image_iv.setImageURI(Uri.parse(dbPets.get(dbPets.size() - 1).getImage()));
+                    }
                 }
 
                 Log.d("User_Data", String.valueOf(dbPets.size()));

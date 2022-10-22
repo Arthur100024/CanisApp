@@ -19,15 +19,18 @@ public class DBPet {
     private String breed;
     @ColumnInfo(name = "pet_age")
     private String age;
+    @ColumnInfo(name = "pet_image")
+    private String image;
 
     @Ignore
     public DBPet(){}
 
-    public DBPet(long id, String nickname, String breed, String age){
+    public DBPet(long id, String nickname, String breed, String age, String image){
         this.id = id;
         this.nickname = nickname;
         this.breed = breed;
         this.age = age;
+        this.image = image;
     }
 
     public long getId() {
@@ -62,6 +65,14 @@ public class DBPet {
         this.age = age;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public static DBPet convertFromPet(PetModel petModel) {
         DBPet dbPet = new DBPet();
 
@@ -69,6 +80,7 @@ public class DBPet {
         dbPet.setNickname(petModel.getNickname());
         dbPet.setBreed(petModel.getBreed());
         dbPet.setAge(petModel.getAge());
+        dbPet.setImage(petModel.getImage());
 
         return dbPet;
     }

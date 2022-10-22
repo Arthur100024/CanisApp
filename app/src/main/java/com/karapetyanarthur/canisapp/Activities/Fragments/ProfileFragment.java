@@ -1,6 +1,7 @@
 package com.karapetyanarthur.canisapp.Activities.Fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -69,6 +70,10 @@ public class ProfileFragment extends Fragment {
                     surname_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getSurname());
                     phone_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getPhone());
                     age_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getAge());
+                    if (dbProfiles.get(dbProfiles.size() - 1).getImage() != null){
+                        profile_image_iv.setBackground(null);
+                        profile_image_iv.setImageURI(Uri.parse(dbProfiles.get(dbProfiles.size() - 1).getImage()));
+                    }
                 }
 
                 Log.d("User_Data", String.valueOf(dbProfiles.size()));

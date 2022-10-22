@@ -1,8 +1,11 @@
 package com.karapetyanarthur.canisapp.Activities.Fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -35,6 +38,8 @@ public class EditPetFragment extends Fragment {
 
     AppViewModel model;
 
+    Uri uri_image;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +65,10 @@ public class EditPetFragment extends Fragment {
                     nickname_pet_et.setText(dbPets.get(dbPets.size() - 1).getNickname());
                     breed_pet_et.setText(dbPets.get(dbPets.size() - 1).getBreed());
                     age_pet_et.setText(dbPets.get(dbPets.size() - 1).getAge());
+                    if (dbPets.get(dbPets.size() - 1).getImage() != null){
+                        pet_image_iv.setBackground(null);
+                        pet_image_iv.setImageURI(Uri.parse(dbPets.get(dbPets.size() - 1).getImage()));
+                    }
                 }
 
                 Log.d("User_Data", String.valueOf(dbPets.size()));
@@ -67,11 +76,18 @@ public class EditPetFragment extends Fragment {
             }
         });
 
+        ActivityResultLauncher<String[]> getContent = getActivity().getActivityResultRegistry().register("key", new ActivityResultContracts.OpenDocument(), result -> {
+            getActivity().getContentResolver().takePersistableUriPermission(result, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            pet_image_iv.setBackground(null);
+            pet_image_iv.setImageURI(result);
+            uri_image = result;
+        });
+
         change_pet_image_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent photoPick = new Intent(Intent.ACTION_GET_CONTENT);
-                startActivity(photoPick);*/
+                getContent.launch(new String[]{"image/*"});
             }
         });
 
@@ -86,6 +102,7 @@ public class EditPetFragment extends Fragment {
                 pet.setNickname(nickname_pet_et.getText().toString());
                 pet.setBreed(breed_pet_et.getText().toString());
                 pet.setAge(age_pet_et.getText().toString());
+                pet.setImage(uri_image.toString());
 
                 model.insert(pet);
 
