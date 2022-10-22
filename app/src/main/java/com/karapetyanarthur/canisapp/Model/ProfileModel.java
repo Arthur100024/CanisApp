@@ -14,15 +14,18 @@ public class ProfileModel {
 
     private String age;
 
+    private String image;
+
     public ProfileModel(){}
 
-    public ProfileModel(long id, String email, String name, String surname, String phone, String age){
+    public ProfileModel(long id, String email, String name, String surname, String phone, String age, String image){
         this.id = id;
         this.email = email;
         this.name = name;
         this.surname = surname;
         this.phone = phone;
         this.age = age;
+        this.image = image;
     }
 
     public long getId() {
@@ -71,5 +74,13 @@ public class ProfileModel {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

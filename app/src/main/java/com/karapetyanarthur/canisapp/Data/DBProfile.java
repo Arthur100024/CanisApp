@@ -22,17 +22,20 @@ public class DBProfile {
     private String phone;
     @ColumnInfo(name = "profile_age")
     private String age;
+    @ColumnInfo(name = "profile_image")
+    private String image;
 
     @Ignore
     public DBProfile(){}
 
-    public DBProfile(long id, String email, String name, String surname, String phone, String age){
+    public DBProfile(long id, String email, String name, String surname, String phone, String age, String image){
         this.id = id;
         this.email = email;
         this.name = name;
         this.surname = surname;
         this.phone = phone;
         this.age = age;
+        this.image = image;
     }
 
     public long getId() {
@@ -81,6 +84,14 @@ public class DBProfile {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public static DBProfile convertFromProfile(ProfileModel profileModel) {
