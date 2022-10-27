@@ -38,7 +38,12 @@ public class ProfileFragment extends Fragment {
     TextView phone_profile;
     TextView age_profile;
 
+    Button look_for_client;
+    Button look_for_cynologist;
+
     AppViewModel model;
+
+    public static String look_for;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,9 +63,14 @@ public class ProfileFragment extends Fragment {
         phone_profile = view.findViewById(R.id.phone_profile);
         age_profile = view.findViewById(R.id.age_profile);
 
+        look_for_client = view.findViewById(R.id.look_for_client);
+        look_for_cynologist = view.findViewById(R.id.look_for_cynologist);
+
+        if (look_for != null){
+            changeColorLookFor();
+        }
+
         model = new ViewModelProvider(this).get(AppViewModel.class);
-
-
         model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<DBProfile>>() {
             @Override
             public void onChanged(List<DBProfile> dbProfiles) {
@@ -81,10 +91,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-
-
-
         edit_profile_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +98,26 @@ public class ProfileFragment extends Fragment {
                 changeActivity(".NavigationActivity");
             }
         });
+
+        look_for_client.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_500));
+                look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_200));
+                look_for = "client";
+            }
+        });
+
+        look_for_cynologist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_500));
+                look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_200));
+                look_for = "cynologist";
+            }
+        });
+
+
         return view;
     }
 
@@ -100,4 +126,15 @@ public class ProfileFragment extends Fragment {
         changeMyActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(changeMyActivity);
     }
+
+    public void changeColorLookFor(){
+        if (look_for.equals("client")){
+            look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_500));
+            look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_200));
+        } else if (look_for.equals("cynologist")){
+            look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_500));
+            look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_200));
+        }
+    }
+
 }

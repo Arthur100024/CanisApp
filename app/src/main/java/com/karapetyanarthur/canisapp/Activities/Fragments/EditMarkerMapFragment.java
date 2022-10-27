@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -21,7 +22,9 @@ import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
+import com.yandex.mapkit.map.MapObject;
 import com.yandex.mapkit.map.MapObjectCollection;
+import com.yandex.mapkit.map.MapObjectDragListener;
 import com.yandex.mapkit.map.PlacemarkMapObject;
 import com.yandex.mapkit.mapview.MapView;
 import com.yandex.runtime.image.ImageProvider;
@@ -67,8 +70,8 @@ public class EditMarkerMapFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        edit_marker_mapview.onStart();
         MapKitFactory.getInstance().onStart();
+        edit_marker_mapview.onStart();
     }
 
     @Override
@@ -88,16 +91,19 @@ public class EditMarkerMapFragment extends Fragment {
     public void changeMapMarker(){
 
         myMarkerMapObject = edit_marker_mapview.getMap().getMapObjects().addCollection();
-        edit_marker_mapview.getMap().move(
-                new CameraPosition(TARGET_LOCATION, 18.0f, 0.0f, 0.0f),
-                new Animation(Animation.Type.SMOOTH, 8f),
-                null);
 
         myPlacemark = myMarkerMapObject.addPlacemark(TARGET_LOCATION);
         myPlacemark.setIcon(ImageProvider.fromBitmap(drawMyBitmap("Я")));
         myPlacemark.isDraggable();
         myPlacemark.setDraggable(true);
-        //myPlacemark.setDragListener(myMarkerDragListener);
+        myPlacemark.setDragListener(myMarkerDragListener);
+
+
+
+        edit_marker_mapview.getMap().move(
+                new CameraPosition(myPlacemark.getGeometry(), 18.0f, 0.0f, 0.0f),
+                new Animation(Animation.Type.SMOOTH, 8f),
+                null);
 
     }
 
@@ -121,7 +127,7 @@ public class EditMarkerMapFragment extends Fragment {
         return bitmap;
     }
 
-    /*public MapObjectDragListener myMarkerDragListener = new MapObjectDragListener() {
+    public MapObjectDragListener myMarkerDragListener = new MapObjectDragListener() {
         @Override
         public void onMapObjectDragStart(@NonNull MapObject mapObject) {
 
@@ -134,9 +140,11 @@ public class EditMarkerMapFragment extends Fragment {
 
         @Override
         public void onMapObjectDragEnd(@NonNull MapObject mapObject) {
-            MyLocationListener.my_latitude = 3;
-            MyLocationListener.my_longitude = 3;
+            /*MyLocationListener.my_latitude = 3;
+            MyLocationListener.my_longitude = 3;*/
+            MyLocationListener.my_latitude = mapObject.getZIndex();
+            //MyLocationListener.my_longitude =
         }
-    };*/
+    };
 //ИЗМЕНЕНИЕ МЕСТОПОЛОЖЕНИЯ ___ КОНЕЦ
 }

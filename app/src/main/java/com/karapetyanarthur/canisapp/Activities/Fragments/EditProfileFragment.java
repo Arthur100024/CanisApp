@@ -9,6 +9,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -45,6 +47,8 @@ public class EditProfileFragment extends Fragment {
 
     Uri uri_image;
 
+    int model_size;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,16 +57,16 @@ public class EditProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
-
-        profile_image_iv = view.findViewById(R.id.profile_image_iv);
-        change_profile_image_btn = view.findViewById(R.id.change_profile_image_btn);
-        email_profile_et = view.findViewById(R.id.email_profile_et);
-        name_profile_et = view.findViewById(R.id.name_profile_et);
-        surname_profile_et = view.findViewById(R.id.surname_profile_et);
-        phone_profile_et = view.findViewById(R.id.phone_profile_et);
-        age_profile_et = view.findViewById(R.id.age_profile_et);
-        save_changes_btn = view.findViewById(R.id.save_changes_btn);
-
+        {
+            profile_image_iv = view.findViewById(R.id.profile_image_iv);
+            change_profile_image_btn = view.findViewById(R.id.change_profile_image_btn);
+            email_profile_et = view.findViewById(R.id.email_profile_et);
+            name_profile_et = view.findViewById(R.id.name_profile_et);
+            surname_profile_et = view.findViewById(R.id.surname_profile_et);
+            phone_profile_et = view.findViewById(R.id.phone_profile_et);
+            age_profile_et = view.findViewById(R.id.age_profile_et);
+            save_changes_btn = view.findViewById(R.id.save_changes_btn);
+        }
         phone_profile_et.setText("+7");
         model = new ViewModelProvider(this).get(AppViewModel.class);
 
@@ -79,8 +83,10 @@ public class EditProfileFragment extends Fragment {
                         profile_image_iv.setBackground(null);
                         profile_image_iv.setImageURI(Uri.parse(dbProfiles.get(dbProfiles.size() - 1).getImage()));
                     }
+                    model_size = dbProfiles.size();
                 }
 
+                Log.d("User_Data", String.valueOf(model_size));
                 Log.d("User_Data", String.valueOf(dbProfiles.size()));
 
             }
@@ -107,8 +113,7 @@ public class EditProfileFragment extends Fragment {
         save_changes_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-// Сохранение данных в Room
+// Saving to ROOM
                 ProfileModel profile = new ProfileModel();
                 profile.setId(0);
                 profile.setEmail(email_profile_et.getText().toString());
@@ -119,9 +124,7 @@ public class EditProfileFragment extends Fragment {
                 if (uri_image != null){
                     profile.setImage(uri_image.toString());
                 }
-
                 model.insert(profile);
-
                 NavigationActivity.changed_fragment = 3;
                 changeActivity(".NavigationActivity");
             }

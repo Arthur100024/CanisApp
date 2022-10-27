@@ -125,8 +125,8 @@ public class MapFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        map_view.onStart();
         MapKitFactory.getInstance().onStart();
+        map_view.onStart();
     }
 
     @Override

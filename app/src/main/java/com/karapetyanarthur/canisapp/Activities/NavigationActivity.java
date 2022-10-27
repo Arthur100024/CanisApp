@@ -68,8 +68,6 @@ public class NavigationActivity extends AppCompatActivity {
     public static int api_is_initialized;
     public static int changed_fragment;
 
-    AppViewModel model;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,8 +83,6 @@ public class NavigationActivity extends AppCompatActivity {
         pet_btn = findViewById(R.id.pet_btn);
         map_btn = findViewById(R.id.map_btn);
         profile_btn = findViewById(R.id.profile_btn);
-
-        model = new ViewModelProvider(this).get(AppViewModel.class);
 
         if (changed_fragment == 1){
             replaceFragment(new PetFragment());
