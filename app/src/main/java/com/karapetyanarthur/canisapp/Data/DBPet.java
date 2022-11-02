@@ -5,8 +5,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.karapetyanarthur.canisapp.Model.PetModel;
-import com.karapetyanarthur.canisapp.Model.ProfileModel;
+import com.karapetyanarthur.canisapp.Data.Model.PetModel;
+import com.karapetyanarthur.canisapp.Data.Model.ProfileModel;
 
 @Entity(tableName = "petTable")
 public class DBPet {
@@ -73,7 +73,7 @@ public class DBPet {
         this.image = image;
     }
 
-    public static DBPet convertFromPet(PetModel petModel) {
+    public static DBPet convertToDBPet(PetModel petModel) {
         DBPet dbPet = new DBPet();
 
         dbPet.setId(petModel.getId());
@@ -83,5 +83,16 @@ public class DBPet {
         dbPet.setImage(petModel.getImage());
 
         return dbPet;
+    }
+
+    public PetModel convertToPet(){
+        PetModel petModel = new PetModel();
+
+        petModel.setId(this.getId());
+        petModel.setNickname(this.getNickname());
+        petModel.setBreed(this.getBreed());
+        petModel.setAge(this.getAge());
+        petModel.setImage(this.getImage());
+        return petModel;
     }
 }

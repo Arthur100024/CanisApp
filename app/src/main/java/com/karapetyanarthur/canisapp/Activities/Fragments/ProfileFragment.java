@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.karapetyanarthur.canisapp.Activities.NavigationActivity;
-import com.karapetyanarthur.canisapp.Data.AppDatabase;
-import com.karapetyanarthur.canisapp.Data.AppRepository;
-import com.karapetyanarthur.canisapp.Data.DBProfile;
-import com.karapetyanarthur.canisapp.Data.ProfileDAO;
+import com.karapetyanarthur.canisapp.Data.Model.ProfileModel;
 import com.karapetyanarthur.canisapp.R;
-import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
+import com.karapetyanarthur.canisapp.ViewModel.ProfileViewModel;
 
 import java.util.List;
 
@@ -41,7 +37,7 @@ public class ProfileFragment extends Fragment {
     Button look_for_client;
     Button look_for_cynologist;
 
-    AppViewModel model;
+    ProfileViewModel model;
 
     public static String look_for;
 
@@ -70,23 +66,23 @@ public class ProfileFragment extends Fragment {
             changeColorLookFor();
         }
 
-        model = new ViewModelProvider(this).get(AppViewModel.class);
-        model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<DBProfile>>() {
+        model = new ViewModelProvider(this).get(ProfileViewModel.class);
+        model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<ProfileModel>>() {
             @Override
-            public void onChanged(List<DBProfile> dbProfiles) {
-                if (dbProfiles.size() != 0){
-                    email_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getEmail());
-                    name_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getName());
-                    surname_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getSurname());
-                    phone_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getPhone());
-                    age_profile.setText(dbProfiles.get(dbProfiles.size() - 1).getAge());
-                    if (dbProfiles.get(dbProfiles.size() - 1).getImage() != null){
+            public void onChanged(List<ProfileModel> profileModels) {
+                if (profileModels.size() != 0){
+                    email_profile.setText(profileModels.get(profileModels.size() - 1).getEmail());
+                    name_profile.setText(profileModels.get(profileModels.size() - 1).getName());
+                    surname_profile.setText(profileModels.get(profileModels.size() - 1).getSurname());
+                    phone_profile.setText(profileModels.get(profileModels.size() - 1).getPhone());
+                    age_profile.setText(profileModels.get(profileModels.size() - 1).getAge());
+                    if (profileModels.get(profileModels.size() - 1).getImage() != null){
                         profile_image_iv.setBackground(null);
-                        profile_image_iv.setImageURI(Uri.parse(dbProfiles.get(dbProfiles.size() - 1).getImage()));
+                        profile_image_iv.setImageURI(Uri.parse(profileModels.get(profileModels.size() - 1).getImage()));
                     }
                 }
 
-                Log.d("User_Data", String.valueOf(dbProfiles.size()));
+                Log.d("User_Data", String.valueOf(profileModels.size()));
 
             }
         });

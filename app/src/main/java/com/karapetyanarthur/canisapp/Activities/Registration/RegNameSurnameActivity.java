@@ -1,6 +1,7 @@
 package com.karapetyanarthur.canisapp.Activities.Registration;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.karapetyanarthur.canisapp.Data.Model.ProfileModel;
 import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthur.canisapp.ViewModel.ProfileViewModel;
 
 public class RegNameSurnameActivity extends AppCompatActivity {
 
@@ -17,6 +20,8 @@ public class RegNameSurnameActivity extends AppCompatActivity {
     EditText name_et;
     EditText surname_et;
     Button next_btn;
+
+    ProfileViewModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +33,11 @@ public class RegNameSurnameActivity extends AppCompatActivity {
         surname_et = findViewById(R.id. surname_et);
         next_btn = findViewById(R.id.next_btn);
 
+        model = new ViewModelProvider(this).get(ProfileViewModel.class);
+
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//НЕ СОХРАНЯТЬ ДАННЫЕ
                 changeActivity(".EnterActivity");
             }
         });
@@ -41,6 +47,12 @@ public class RegNameSurnameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!name_et.getText().toString().equals("") && !surname_et.getText().toString().equals("")){
 // ДОБАВИТЬ СОХРАНЕНИЕ ДАННЫХ
+                    ProfileModel profile = new ProfileModel();
+                    profile.setId(0);
+                    profile.setName(name_et.getText().toString());
+                    profile.setSurname(surname_et.getText().toString());
+                    model.insert(profile);
+
                     changeActivity(".RegPhoneActivity");
                 } else {
                     showToast("Введите все поля!");

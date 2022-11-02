@@ -1,16 +1,13 @@
 package com.karapetyanarthur.canisapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.karapetyanarthur.canisapp.Data.DBProfile;
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.R;
-import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
 
 public class MainActivity extends AppCompatActivity {
 

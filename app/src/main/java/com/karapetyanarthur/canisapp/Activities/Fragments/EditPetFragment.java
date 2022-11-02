@@ -20,10 +20,11 @@ import android.widget.ImageView;
 
 import com.karapetyanarthur.canisapp.Activities.NavigationActivity;
 import com.karapetyanarthur.canisapp.Data.DBPet;
-import com.karapetyanarthur.canisapp.Data.DBProfile;
-import com.karapetyanarthur.canisapp.Model.PetModel;
+import com.karapetyanarthur.canisapp.Data.Model.PetModel;
 import com.karapetyanarthur.canisapp.R;
-import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
+import com.karapetyanarthur.canisapp.ViewModel.EditPetViewModel;
+import com.karapetyanarthur.canisapp.ViewModel.PetViewModel;
+import com.karapetyanarthur.canisapp.ViewModel.ProfileViewModel;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class EditPetFragment extends Fragment {
     EditText age_pet_et;
     Button save_changes_btn;
 
-    AppViewModel model;
+    EditPetViewModel model;
 
     Uri uri_image;
 
@@ -56,23 +57,23 @@ public class EditPetFragment extends Fragment {
         age_pet_et = view.findViewById(R.id.age_pet_et);
         save_changes_btn = view.findViewById(R.id.save_changes_btn);
 
-        model = new ViewModelProvider(this).get(AppViewModel.class);
+        model = new ViewModelProvider(this).get(EditPetViewModel.class);
 
-        model.getAllPet().observe(getViewLifecycleOwner(), new Observer<List<DBPet>>() {
+        model.getAllPet().observe(getViewLifecycleOwner(), new Observer<List<PetModel>>() {
             @Override
-            public void onChanged(List<DBPet> dbPets) {
-                if (dbPets.size() != 0){
-                    nickname_pet_et.setText(dbPets.get(dbPets.size() - 1).getNickname());
-                    breed_pet_et.setText(dbPets.get(dbPets.size() - 1).getBreed());
-                    age_pet_et.setText(dbPets.get(dbPets.size() - 1).getAge());
-                    if (dbPets.get(dbPets.size() - 1).getImage() != null){
+            public void onChanged(List<PetModel> petModels) {
+                if (petModels.size() != 0){
+                    nickname_pet_et.setText(petModels.get(petModels.size() - 1).getNickname());
+                    breed_pet_et.setText(petModels.get(petModels.size() - 1).getBreed());
+                    age_pet_et.setText(petModels.get(petModels.size() - 1).getAge());
+                    if (petModels.get(petModels.size() - 1).getImage() != null){
+                        uri_image = Uri.parse(petModels.get(petModels.size() - 1).getImage());
                         pet_image_iv.setBackground(null);
-                        pet_image_iv.setImageURI(Uri.parse(dbPets.get(dbPets.size() - 1).getImage()));
+                        pet_image_iv.setImageURI(Uri.parse(petModels.get(petModels.size() - 1).getImage()));
                     }
                 }
 
-                Log.d("User_Data", String.valueOf(dbPets.size()));
-
+                Log.d("User_Data", String.valueOf(petModels.size()));
             }
         });
 
@@ -102,10 +103,10 @@ public class EditPetFragment extends Fragment {
                 pet.setNickname(nickname_pet_et.getText().toString());
                 pet.setBreed(breed_pet_et.getText().toString());
                 pet.setAge(age_pet_et.getText().toString());
-                pet.setImage(uri_image.toString());
-
+                if (uri_image != null) {
+                    pet.setImage(uri_image.toString());
+                }
                 model.insert(pet);
-
                 NavigationActivity.changed_fragment = 1;
                 changeActivity(".NavigationActivity");
             }

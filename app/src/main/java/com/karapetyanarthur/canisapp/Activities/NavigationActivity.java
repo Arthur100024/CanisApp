@@ -1,63 +1,23 @@
 package com.karapetyanarthur.canisapp.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.DragEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.karapetyanarthur.canisapp.Activities.Fragments.EditMarkerMapFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.MapFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.ProfileFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.EditProfileFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.EditPetFragment;
-import com.karapetyanarthur.canisapp.Data.DBProfile;
-import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.Activities.Fragments.PetFragment;
 import com.karapetyanarthur.canisapp.R;
-import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
-import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
-import com.yandex.mapkit.geometry.Circle;
-import com.yandex.mapkit.geometry.Point;
-import com.yandex.mapkit.map.CameraPosition;
-import com.yandex.mapkit.map.CircleMapObject;
-import com.yandex.mapkit.map.MapMode;
-import com.yandex.mapkit.map.MapObject;
-import com.yandex.mapkit.map.MapObjectCollection;
-import com.yandex.mapkit.map.MapObjectDragListener;
-import com.yandex.mapkit.map.MapObjectTapListener;
-import com.yandex.mapkit.map.MapType;
-import com.yandex.mapkit.map.PlacemarkMapObject;
-import com.yandex.mapkit.map.UserData;
-import com.yandex.mapkit.map.internal.PlacemarkMapObjectBinding;
-import com.yandex.mapkit.mapview.MapView;
-import com.yandex.runtime.image.ImageProvider;
-
-import java.util.List;
 
 public class NavigationActivity extends AppCompatActivity {
 

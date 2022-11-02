@@ -2,7 +2,6 @@ package com.karapetyanarthur.canisapp.Activities.Fragments;
 
 import static com.yandex.runtime.Runtime.getApplicationContext;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,10 +25,10 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.karapetyanarthur.canisapp.Activities.NavigationActivity;
-import com.karapetyanarthur.canisapp.Data.DBProfile;
+import com.karapetyanarthur.canisapp.Data.Model.ProfileModel;
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.R;
-import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
+import com.karapetyanarthur.canisapp.ViewModel.ProfileViewModel;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
@@ -61,7 +60,7 @@ public class MapFragment extends Fragment {
     PlacemarkMapObject clientPlacemark;
     PlacemarkMapObject cynologistPlacemark;
 
-    AppViewModel model;
+    ProfileViewModel model;
 
     View bottomSheetView;
     BottomSheetDialog bottomSheetDialog;
@@ -87,17 +86,17 @@ public class MapFragment extends Fragment {
         edit_marker_btn = view.findViewById(R.id.edit_marker_btn);
         map_view = (MapView) view.findViewById(R.id.mapview);
 
-        model = new ViewModelProvider(this).get(AppViewModel.class);
-        model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<DBProfile>>() {
+        model = new ViewModelProvider(this).get(ProfileViewModel.class);
+        model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<ProfileModel>>() {
             @Override
-            public void onChanged(List<DBProfile> dbProfiles) {
-                if (dbProfiles.size() != 0){
-                    my_name_bottom_sheet = dbProfiles.get(dbProfiles.size() - 1).getName();
-                    my_surname_bottom_sheet = dbProfiles.get(dbProfiles.size() - 1).getSurname();
-                    my_phone_bottom_sheet = dbProfiles.get(dbProfiles.size() - 1).getPhone();
+            public void onChanged(List<ProfileModel> profileModels) {
+                if (profileModels.size() != 0){
+                    my_name_bottom_sheet = profileModels.get(profileModels.size() - 1).getName();
+                    my_surname_bottom_sheet = profileModels.get(profileModels.size() - 1).getSurname();
+                    my_phone_bottom_sheet = profileModels.get(profileModels.size() - 1).getPhone();
                 }
 
-                Log.d("User_Data", String.valueOf(dbProfiles.size()));
+                Log.d("User_Data", String.valueOf(profileModels.size()));
 
             }
         });

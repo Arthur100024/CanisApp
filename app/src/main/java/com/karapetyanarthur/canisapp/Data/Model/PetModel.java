@@ -1,4 +1,4 @@
-package com.karapetyanarthur.canisapp.Model;
+package com.karapetyanarthur.canisapp.Data.Model;
 
 public class PetModel {
 

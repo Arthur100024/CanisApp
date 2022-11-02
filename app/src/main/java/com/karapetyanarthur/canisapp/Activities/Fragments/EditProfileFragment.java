@@ -6,15 +6,10 @@ import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +19,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.karapetyanarthur.canisapp.Activities.NavigationActivity;
-import com.karapetyanarthur.canisapp.Data.DBProfile;
-import com.karapetyanarthur.canisapp.Model.ProfileModel;
+import com.karapetyanarthur.canisapp.Data.Model.ProfileModel;
 import com.karapetyanarthur.canisapp.R;
-import com.karapetyanarthur.canisapp.ViewModel.AppViewModel;
+import com.karapetyanarthur.canisapp.ViewModel.EditProfileViewModel;
 
-import java.net.URI;
 import java.util.List;
 
 public class EditProfileFragment extends Fragment {
@@ -43,7 +36,7 @@ public class EditProfileFragment extends Fragment {
     EditText age_profile_et;
     Button save_changes_btn;
 
-    AppViewModel model;
+    EditProfileViewModel model;
 
     Uri uri_image;
 
@@ -68,27 +61,26 @@ public class EditProfileFragment extends Fragment {
             save_changes_btn = view.findViewById(R.id.save_changes_btn);
         }
         phone_profile_et.setText("+7");
-        model = new ViewModelProvider(this).get(AppViewModel.class);
+        model = new ViewModelProvider(this).get(EditProfileViewModel.class);
 
-        model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<DBProfile>>() {
+        model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<ProfileModel>>() {
             @Override
-            public void onChanged(List<DBProfile> dbProfiles) {
-                if (dbProfiles.size() != 0){
-                    email_profile_et.setText(dbProfiles.get(dbProfiles.size() - 1).getEmail());
-                    name_profile_et.setText(dbProfiles.get(dbProfiles.size() - 1).getName());
-                    surname_profile_et.setText(dbProfiles.get(dbProfiles.size() - 1).getSurname());
-                    phone_profile_et.setText(dbProfiles.get(dbProfiles.size() - 1).getPhone());
-                    age_profile_et.setText(dbProfiles.get(dbProfiles.size() - 1).getAge());
-                    if (dbProfiles.get(dbProfiles.size() - 1).getImage() != null){
+            public void onChanged(List<ProfileModel> profileModels) {
+                if (profileModels.size() != 0){
+                    email_profile_et.setText(profileModels.get(profileModels.size() - 1).getEmail());
+                    name_profile_et.setText(profileModels.get(profileModels.size() - 1).getName());
+                    surname_profile_et.setText(profileModels.get(profileModels.size() - 1).getSurname());
+                    phone_profile_et.setText(profileModels.get(profileModels.size() - 1).getPhone());
+                    age_profile_et.setText(profileModels.get(profileModels.size() - 1).getAge());
+                    if (profileModels.get(profileModels.size() - 1).getImage() != null){
+                        uri_image = Uri.parse(profileModels.get(profileModels.size() - 1).getImage());
                         profile_image_iv.setBackground(null);
-                        profile_image_iv.setImageURI(Uri.parse(dbProfiles.get(dbProfiles.size() - 1).getImage()));
+                        profile_image_iv.setImageURI(Uri.parse(profileModels.get(profileModels.size() - 1).getImage()));
                     }
-                    model_size = dbProfiles.size();
+                    model_size = profileModels.size();
                 }
 
                 Log.d("User_Data", String.valueOf(model_size));
-                Log.d("User_Data", String.valueOf(dbProfiles.size()));
-
             }
         });
 

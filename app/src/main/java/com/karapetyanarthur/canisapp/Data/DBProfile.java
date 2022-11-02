@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.karapetyanarthur.canisapp.Model.ProfileModel;
+import com.karapetyanarthur.canisapp.Data.Model.ProfileModel;
 
 @Entity(tableName = "profileTable")
 public class DBProfile {
@@ -94,17 +94,30 @@ public class DBProfile {
         this.image = image;
     }
 
-    public static DBProfile convertFromProfile(ProfileModel profileModel) {
+    public static DBProfile convertToDBProfile(ProfileModel profileModel) {
         DBProfile dbProfile = new DBProfile();
 
         dbProfile.setId(profileModel.getId());
-        dbProfile.setName(profileModel.getName());
         dbProfile.setEmail(profileModel.getEmail());
+        dbProfile.setName(profileModel.getName());
         dbProfile.setSurname(profileModel.getSurname());
         dbProfile.setPhone(profileModel.getPhone());
         dbProfile.setAge(profileModel.getAge());
         dbProfile.setImage(profileModel.getImage());
 
         return dbProfile;
+    }
+
+    public ProfileModel convertToProfile(){
+        ProfileModel profileModel = new ProfileModel();
+
+        profileModel.setId(this.getId());
+        profileModel.setEmail(this.getEmail());
+        profileModel.setName(this.getName());
+        profileModel.setSurname(this.getSurname());
+        profileModel.setPhone(this.getPhone());
+        profileModel.setAge(this.getAge());
+        profileModel.setImage(this.getImage());
+        return profileModel;
     }
 }
