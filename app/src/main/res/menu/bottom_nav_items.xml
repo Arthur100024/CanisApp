@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pet"
+        android:title="Питомец"
+        android:icon="@drawable/dog_icon"/>
+
+    <item
+        android:id="@+id/map"
+        android:title="Карта"
+        android:icon="@drawable/map_icon"/>
+
+    <item
+        android:id="@+id/profile"
+        android:title="Профиль"
+        android:icon="@drawable/profile_icon"/>
+</menu>

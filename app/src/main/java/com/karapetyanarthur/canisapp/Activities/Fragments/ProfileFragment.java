@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -90,16 +92,15 @@ public class ProfileFragment extends Fragment {
         edit_profile_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationActivity.changed_fragment = 31;
-                changeActivity(".NavigationActivity");
+                replaceFragment(new EditProfileFragment());
             }
         });
 
         look_for_client.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_500));
-                look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_200));
+                look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_200));
+                look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_500));
                 look_for = "client";
             }
         });
@@ -107,20 +108,19 @@ public class ProfileFragment extends Fragment {
         look_for_cynologist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_500));
-                look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_200));
+                look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_200));
+                look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_500));
                 look_for = "cynologist";
             }
         });
-
-
         return view;
     }
 
-    public void changeActivity(String name_of_activity){
-        Intent changeMyActivity = new Intent(name_of_activity);
-        changeMyActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(changeMyActivity);
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frame, fragment);
+        ft.commit();
     }
 
     public void changeColorLookFor(){

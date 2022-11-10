@@ -23,128 +23,21 @@
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bnb_layout"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/navigation_tool_bar"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bnb_layout"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:background="@color/white"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_bottom_nav_view"
+        app:itemIconTint="@drawable/bottom_nav_view_selector"
+        app:itemTextColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:context=".Activities.NavigationActivity">
-
-        <Button
-            android:id="@+id/pet_btn"
-            android:layout_width="111dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/map_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/pet_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="60dp"
-            android:background="@drawable/dog_icon"
-            android:padding="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/pet_tv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/pet_tv"
-            android:layout_width="63dp"
-            android:layout_height="14dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:text="Питомец"
-            android:textSize="12sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/pet_icon"
-            app:layout_constraintStart_toStartOf="@+id/pet_icon" />
-
-        <Button
-            android:id="@+id/map_btn"
-            android:layout_width="111dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/map_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/map_icon"
-            android:padding="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/map_tv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/map_tv"
-            android:layout_width="58dp"
-            android:layout_height="14dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:text="Карта"
-            android:textSize="12sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/map_icon"
-            app:layout_constraintStart_toStartOf="@+id/map_icon" />
-
-        <Button
-            android:id="@+id/profile_btn"
-            android:layout_width="111dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/map_btn"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/profile_icon"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/profile_icon"
-            android:padding="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/profile_tv"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/profile_tv"
-            android:layout_width="58dp"
-            android:layout_height="14dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:text="Профиль"
-            android:textSize="12sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/profile_icon"
-            app:layout_constraintStart_toStartOf="@+id/profile_icon" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:menu="@menu/bottom_nav_items" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

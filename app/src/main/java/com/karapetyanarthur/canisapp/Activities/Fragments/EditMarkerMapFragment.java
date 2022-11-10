@@ -9,6 +9,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,8 +62,7 @@ public class EditMarkerMapFragment extends Fragment {
         save_marker_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavigationActivity.changed_fragment = 2;
-                changeActivity(".NavigationActivity");
+                replaceFragment(new MapFragment());
             }
         });
         return view;
@@ -81,10 +82,11 @@ public class EditMarkerMapFragment extends Fragment {
         super.onStop();
     }
 
-    public void changeActivity(String name_of_activity){
-        Intent changeMyActivity = new Intent(name_of_activity);
-        changeMyActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(changeMyActivity);
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frame, fragment);
+        ft.commit();
     }
 
 //ИЗМЕНЕНИЕ МЕСТОПОЛОЖЕНИЯ ___ НАЧАЛО

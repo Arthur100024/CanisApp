@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -73,17 +75,17 @@ public class PetFragment extends Fragment {
         edit_pet_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationActivity.changed_fragment = 11;
-                changeActivity(".NavigationActivity");
+                replaceFragment(new EditPetFragment());
             }
         });
 
         return view;
     }
 
-    public void changeActivity(String name_of_activity){
-        Intent changeMyActivity = new Intent(name_of_activity);
-        changeMyActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(changeMyActivity);
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frame, fragment);
+        ft.commit();
     }
 }
