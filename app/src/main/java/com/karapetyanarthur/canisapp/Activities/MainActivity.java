@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.R;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Uri uri = getIntent().getData();
+        if(uri != null) {
+            List<String> params = uri.getPathSegments();
+            String id = params.get(params.size() - 1);
+            Toast.makeText(this, "id="+id,Toast.LENGTH_SHORT).show();
+        }
         SharedPrefs = getSharedPreferences("prefs",MODE_PRIVATE);
-
-        /*model = new ViewModelProvider(this).get(AppViewModel.class);
-
-        model.insert(new DBProfile(0,"justfrog44@gmail.com",
-                "Arthur","Karapetyan",
-                "89167441755","20"));*/
 
         try {
             Thread.sleep(3000);

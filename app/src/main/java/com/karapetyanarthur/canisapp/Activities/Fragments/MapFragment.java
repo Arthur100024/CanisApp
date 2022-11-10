@@ -21,13 +21,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.karapetyanarthur.canisapp.Activities.NavigationActivity;
+import com.karapetyanarthur.canisapp.Data.Model.PetModel;
 import com.karapetyanarthur.canisapp.Data.Model.ProfileModel;
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthur.canisapp.ViewModel.MapViewModel;
 import com.karapetyanarthur.canisapp.ViewModel.ProfileViewModel;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
@@ -53,14 +56,19 @@ public class MapFragment extends Fragment {
     private MapObjectCollection cynologistCollection;
 
     PlacemarkMapObject myPlacemark;
+    Uri my_image_bottom_sheet;
     String my_name_bottom_sheet;
     String my_surname_bottom_sheet;
     String my_phone_bottom_sheet;
+    Uri my_pet_image_bottom_sheet;
+    String my_pet_nickname_bottom_sheet;
+    String my_pet_breed_bottom_sheet;
+    String my_pet_age_bottom_sheet;
 
     PlacemarkMapObject clientPlacemark;
     PlacemarkMapObject cynologistPlacemark;
 
-    ProfileViewModel model;
+    MapViewModel model;
 
     View bottomSheetView;
     BottomSheetDialog bottomSheetDialog;
@@ -86,7 +94,9 @@ public class MapFragment extends Fragment {
         edit_marker_btn = view.findViewById(R.id.edit_marker_btn);
         map_view = (MapView) view.findViewById(R.id.mapview);
 
-        model = new ViewModelProvider(this).get(ProfileViewModel.class);
+
+        model = new ViewModelProvider(this).get(MapViewModel.class);
+
         model.getAllProfile().observe(getViewLifecycleOwner(), new Observer<List<ProfileModel>>() {
             @Override
             public void onChanged(List<ProfileModel> profileModels) {
@@ -94,12 +104,27 @@ public class MapFragment extends Fragment {
                     my_name_bottom_sheet = profileModels.get(profileModels.size() - 1).getName();
                     my_surname_bottom_sheet = profileModels.get(profileModels.size() - 1).getSurname();
                     my_phone_bottom_sheet = profileModels.get(profileModels.size() - 1).getPhone();
+                    if (profileModels.get(profileModels.size() - 1).getImage() != null){
+                        my_image_bottom_sheet = Uri.parse(profileModels.get(profileModels.size() - 1).getImage());
+                    }
                 }
-
-                Log.d("User_Data", String.valueOf(profileModels.size()));
-
             }
         });
+
+        model.getAllPet().observe(getViewLifecycleOwner(), new Observer<List<PetModel>>() {
+            @Override
+            public void onChanged(List<PetModel> petModels) {
+                if (petModels.size() != 0){
+                    my_pet_nickname_bottom_sheet = petModels.get(petModels.size() - 1).getNickname();
+                    my_pet_breed_bottom_sheet = petModels.get(petModels.size() - 1).getBreed();
+                    my_pet_age_bottom_sheet = petModels.get(petModels.size() - 1).getAge();
+                    if (petModels.get(petModels.size() - 1).getImage() != null){
+                        my_pet_image_bottom_sheet = Uri.parse(petModels.get(petModels.size() - 1).getImage());
+                    }
+                }
+            }
+        });
+
 
         getAllMapMarkers();
 
@@ -164,7 +189,7 @@ public class MapFragment extends Fragment {
 //МАРКЕР КЛИЕНТОВ ___ НАЧАЛО
         clientCollection = map_view.getMap().getMapObjects().addCollection();
 
-        clientPlacemark = clientCollection.addPlacemark(new Point(MyLocationListener.my_latitude+0.0003,MyLocationListener.my_longitude+0.0003));
+        clientPlacemark = clientCollection.addPlacemark(new Point(10,10));
         clientPlacemark.setIcon(ImageProvider.fromBitmap(drawClientBitmap()));
         clientPlacemark.setUserData(new markerMapObjectUserData(" ", " "," "));
         //clientPlacemark.addTapListener(markerMapObjectTapListener);
@@ -200,25 +225,51 @@ public class MapFragment extends Fragment {
         @Override
         public boolean onMapObjectTap(MapObject mapObject, Point point) {
 
-            TextView name_find_profile_tv = (TextView) bottomSheetView.findViewById(R.id.name_find_profile_tv);
-            name_find_profile_tv.setText(my_name_bottom_sheet);
+            ImageView image_profile_iv = (ImageView) bottomSheetView.findViewById(R.id.profile_image_iv);
+            image_profile_iv.setBackground(null);
+            image_profile_iv.setImageURI(my_image_bottom_sheet);
 
-            TextView surname_find_profile_tv = (TextView) bottomSheetView.findViewById(R.id.surname_find_profile_tv);
-            surname_find_profile_tv.setText(my_surname_bottom_sheet);
+            TextView name_profile_tv = (TextView) bottomSheetView.findViewById(R.id.name_profile_tv);
+            name_profile_tv.setText(my_name_bottom_sheet);
 
-            TextView number_find_profile_tv = (TextView) bottomSheetView.findViewById(R.id.number_find_profile_tv);
-            number_find_profile_tv.setText(my_phone_bottom_sheet);
+            TextView surname_profile_tv = (TextView) bottomSheetView.findViewById(R.id.surname_profile_tv);
+            surname_profile_tv.setText(my_surname_bottom_sheet);
+
+            TextView number_profile_tv = (TextView) bottomSheetView.findViewById(R.id.number_profile_tv);
+            number_profile_tv.setText(my_phone_bottom_sheet);
 
             ImageButton to_WhatsApp_btn = (ImageButton) bottomSheetView.findViewById(R.id.to_WhatsApp_btn);
             to_WhatsApp_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String url = "https://api.whatsapp.com/send?phone="+number_find_profile_tv.getText().toString();
-                    Intent WhatsAppIntent = new Intent(Intent.ACTION_VIEW);
-                    WhatsAppIntent.setData(Uri.parse(url));
+                    Uri whatsapp_uri = Uri.parse("https://api.whatsapp.com/send?phone="+number_profile_tv.getText().toString());
+                    Intent WhatsAppIntent = new Intent(Intent.ACTION_VIEW, whatsapp_uri);
                     startActivity(WhatsAppIntent);
                 }
             });
+
+            ImageButton to_Telegram_btn = (ImageButton) bottomSheetView.findViewById(R.id.to_Telegram_btn);
+            to_Telegram_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Uri telegram_uri = Uri.parse("https://telegram.me/"+number_profile_tv.getText().toString());
+                    Intent TelegramIntent = new Intent(Intent.ACTION_VIEW, telegram_uri).setPackage("org.telegram.messenger");
+                    startActivity(TelegramIntent);
+                }
+            });
+
+            ImageView image_pet_iv = (ImageView) bottomSheetView.findViewById(R.id.pet_image_iv);
+            image_pet_iv.setBackground(null);
+            image_pet_iv.setImageURI(my_pet_image_bottom_sheet);
+
+            TextView nickname_pet_tv = (TextView) bottomSheetView.findViewById(R.id.nickname_pet_tv);
+            nickname_pet_tv.setText(my_pet_nickname_bottom_sheet);
+
+            TextView breed_pet_tv = (TextView) bottomSheetView.findViewById(R.id.breed_pet_tv);
+            breed_pet_tv.setText(my_pet_breed_bottom_sheet);
+
+            TextView age_pet_tv = (TextView) bottomSheetView.findViewById(R.id.age_pet_tv);
+            age_pet_tv.setText(my_pet_age_bottom_sheet);
 
             bottomSheetDialog.setContentView(bottomSheetView);
             bottomSheetDialog.show();

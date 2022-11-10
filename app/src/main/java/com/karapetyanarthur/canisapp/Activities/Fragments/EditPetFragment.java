@@ -96,8 +96,6 @@ public class EditPetFragment extends Fragment {
         save_changes_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//ДОБАВИТЬ СОХРАНЕНИЕ ДАННЫХ
-
                 PetModel pet = new PetModel();
                 pet.setId(0);
                 pet.setNickname(nickname_pet_et.getText().toString());
