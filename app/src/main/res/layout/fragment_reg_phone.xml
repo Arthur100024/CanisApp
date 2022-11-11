@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_background_clr"
+    tools:context=".Activities.Registration.RegPhoneFragment">
+
+    <TextView
+        android:id="@+id/regPhoneTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="84dp"
+        android:text="Номер телефона"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/phoneEt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/regPhoneTv"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:inputType="phone"
+        android:hint="Телефон" />
+
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneEt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="Далее" />
+
+</RelativeLayout>

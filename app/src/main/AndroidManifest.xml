@@ -33,16 +33,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.Registration.RegLoginActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name=".RegLoginActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".Activities.Registration.MapSetLocActivity"
             android:exported="false"
             android:screenOrientation="portrait">
@@ -58,46 +48,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name=".PermissionsActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Activities.LogInActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name=".LogInActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Activities.Registration.RegPasswordActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name=".RegPasswordActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Activities.Registration.RegPhoneActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name=".RegPhoneActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Activities.Registration.RegNameSurnameActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name=".RegNameSurnameActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

@@ -21,29 +21,31 @@ import com.karapetyanarthur.canisapp.Activities.Fragments.EditProfileFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.EditPetFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.PetFragment;
 import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthur.canisapp.databinding.ActivityNavigationBinding;
 import com.yandex.mapkit.MapKitFactory;
 
 public class NavigationActivity extends AppCompatActivity {
 
+    ActivityNavigationBinding binding;
     BottomNavigationView bottom_nav_view;
     public static int api_is_initialized;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityNavigationBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
 
         if (api_is_initialized == 0){
             MapKitFactory.setApiKey("c79b2053-ca3c-453b-9709-fc9d680b8cf0");
             MapKitFactory.initialize(this);
             api_is_initialized = 1;
         }
-
-        setContentView(R.layout.activity_navigation);
+        setContentView(view);
 
         replaceFragment(new PetFragment());
 
-        bottom_nav_view = findViewById(R.id.bottom_nav_view);
-        bottom_nav_view.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        binding.bottomNavView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
