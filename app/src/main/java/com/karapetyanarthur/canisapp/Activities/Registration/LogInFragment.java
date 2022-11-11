@@ -56,7 +56,7 @@ public class LogInFragment extends Fragment {
             public void onClick(View v) {
                 if (!binding.logInBtn.getText().toString().equals("") && !binding.passEt.getText().toString().equals("")) {
 //ДОБАВИТЬ ПРОВЕРКУ ЛОГИНА И ПАРОЛЯ
-                    //replaceFragment(new PermissionsFragment);
+                    replaceFragment(new PermissionsFragment());
                 }
             }
         });

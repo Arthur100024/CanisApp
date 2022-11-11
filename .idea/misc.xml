@@ -27,12 +27,14 @@
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_enter.xml" value="0.1" />
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_log_in.xml" value="0.15" />
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_map.xml" value="0.2" />
+        <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_map_set_loc.xml" value="0.2878787878787879" />
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_maps.xml" value="0.16210739614994935" />
+        <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_permissions.xml" value="0.25" />
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_pet.xml" value="0.33" />
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_reg_login.xml" value="0.33" />
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_reg_name_surname.xml" value="0.22" />
-        <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_reg_password.xml" value="0.2" />
+        <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_reg_password.xml" value="0.16203703703703703" />
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/fragment_reg_phone.xml" value="0.22" />
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/layout_bottom_sheed.xml" value="0.25" />
         <entry key="..\:/PROGRAMMES/Android_studio/ASProjects/CanisApp/app/src/main/res/layout/layout_bottom_sheet.xml" value="0.22" />

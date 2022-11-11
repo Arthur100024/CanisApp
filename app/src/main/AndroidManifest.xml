@@ -33,26 +33,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.Registration.MapSetLocActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name=".MapSetLocActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Activities.Registration.PermissionsActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name=".PermissionsActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".Activities.EnterActivity"
             android:exported="false"
             android:screenOrientation="portrait">

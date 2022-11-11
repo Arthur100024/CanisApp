@@ -1,65 +1,79 @@
 package com.karapetyanarthur.canisapp.Activities.Registration;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 
 import com.karapetyanarthur.canisapp.Activities.NavigationActivity;
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthur.canisapp.databinding.FragmentMapSetLocBinding;
+import com.karapetyanarthur.canisapp.databinding.FragmentPermissionsBinding;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
-import com.yandex.mapkit.mapview.MapView;
 import com.yandex.runtime.image.ImageProvider;
 
-public class MapSetLocActivity extends AppCompatActivity {
+public class MapSetLocFragment extends Fragment {
 
-    private MapView map_view;
+    FragmentMapSetLocBinding binding;
     private final Point TARGET_LOCATION = new Point(MyLocationListener.my_latitude,MyLocationListener.my_longitude);
-
-    Button apply_loc_btn;
 
     private SharedPreferences SharedPrefs;
     public static final String LOGGED = "IsUserLogged";
 
+    public static MapSetLocFragment newInstance() {
+        return new MapSetLocFragment();
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        MapKitFactory.setApiKey("c79b2053-ca3c-453b-9709-fc9d680b8cf0");
-        MapKitFactory.initialize(this);
-
-        setContentView(R.layout.activity_map_set_loc);
-
-        {
-            apply_loc_btn = findViewById(R.id.apply_loc_btn);
-            map_view = (MapView) findViewById(R.id.mapview);
-            SharedPrefs = getSharedPreferences("prefs",MODE_PRIVATE);
+    public void onCreate(Bundle savedInstanceState) {
+        if (NavigationActivity.api_is_initialized == 0){
+            MapKitFactory.setApiKey("c79b2053-ca3c-453b-9709-fc9d680b8cf0");
+            MapKitFactory.initialize(this.getActivity());
+            NavigationActivity.api_is_initialized = 1;
         }
 
-        /*map_view.getMap().getMode().*/
-//ПЕРЕМЕЩЕНИЕ КАМЕРЫ
-        map_view.getMap().move(
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentMapSetLocBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        SharedPrefs = getActivity().getSharedPreferences("prefs",MODE_PRIVATE);
+
+        binding.mapView.getMap().move(
                 new CameraPosition(TARGET_LOCATION, 18.0f, 0.0f, 0.0f),
                 new Animation(Animation.Type.SMOOTH, 8f),
                 null);
 
 //ДОБАВЛЕНИЕ МАРКЕРА
-        map_view.getMap().getMapObjects().addPlacemark(TARGET_LOCATION, ImageProvider.fromBitmap(drawSimpleBitmap("Я")));
+        binding.mapView.getMap().getMapObjects().addPlacemark(TARGET_LOCATION, ImageProvider.fromBitmap(drawSimpleBitmap("Я")));
 
 
-        apply_loc_btn.setOnClickListener(new View.OnClickListener() {
+        binding.applyLocBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editorLogged = SharedPrefs.edit();
@@ -75,17 +89,17 @@ public class MapSetLocActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         MapKitFactory.getInstance().onStart();
-        map_view.onStart();
+        binding.mapView.onStart();
     }
 
     @Override
     public void onStop() {
-        map_view.onStop();
+        binding.mapView.onStop();
         MapKitFactory.getInstance().onStop();
         super.onStop();
     }
 
-//БИТМАП ДЛЯ МАРКЕРА
+    //БИТМАП ДЛЯ МАРКЕРА
     public Bitmap drawSimpleBitmap(String number) {
         int picSize = 100;
         Bitmap bitmap = Bitmap.createBitmap(picSize, picSize, Bitmap.Config.ARGB_8888);
