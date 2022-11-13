@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/activity_background_clr"
     tools:context=".Activities.Fragments.PetFragment">
 
     <ImageView
-        android:id="@+id/pet_image_iv"
+        android:id="@+id/petImageIv"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
-        android:layout_gravity="center"
         android:background="@drawable/dog_icon" />
 
     <TextView
+        android:id="@+id/infoTv"
         android:layout_width="236dp"
         android:layout_height="32dp"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/petImageIv"
         android:layout_marginTop="20dp"
         android:text="Данные питомца"
         android:textAlignment="center"
@@ -28,17 +29,19 @@
         android:textSize="24sp"
         android:textStyle="bold"/>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/nicknameRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/infoTv"
+        android:layout_marginTop="40dp">
 
         <TextView
-            android:id="@+id/text_nickname_pet"
+            android:id="@+id/textNicknamePet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Кличка : "
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -46,27 +49,30 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/nickname_pet"
+            android:id="@+id/nicknamePet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textNicknamePet"
+            android:layout_centerVertical="true"
             android:text="@string/no_information"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp"/>
+    </RelativeLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/breedRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/nicknameRel"
+        android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/text_breed_pet"
+            android:id="@+id/textBreedPet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Порода : "
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -74,27 +80,31 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/breed_pet"
+            android:id="@+id/breedPet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textBreedPet"
+            android:layout_centerVertical="true"
             android:text="@string/no_information"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/ageRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/breedRel"
+        android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/text_age_pet"
+            android:id="@+id/textAgePet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Возраст :"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -102,23 +112,25 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/age_pet"
+            android:id="@+id/agePet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textAgePet"
             android:text="@string/no_information"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <Button
-        android:id="@+id/edit_pet_btn"
+        android:id="@+id/editPetBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ageRel"
         android:layout_marginTop="10dp"
         android:text="Изменить" />
 
-</LinearLayout>
+</RelativeLayout>

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,47 +24,32 @@ import com.karapetyanarthur.canisapp.Activities.NavigationActivity;
 import com.karapetyanarthur.canisapp.Data.Model.ProfileModel;
 import com.karapetyanarthur.canisapp.R;
 import com.karapetyanarthur.canisapp.ViewModel.ProfileViewModel;
+import com.karapetyanarthur.canisapp.databinding.FragmentEditProfileBinding;
+import com.karapetyanarthur.canisapp.databinding.FragmentProfileBinding;
 
 import java.util.List;
 
 public class ProfileFragment extends Fragment {
 
-    Button edit_profile_btn;
-    ImageView profile_image_iv;
-
-    TextView email_profile;
-    TextView name_profile;
-    TextView surname_profile;
-    TextView phone_profile;
-    TextView age_profile;
-
-    Button look_for_client;
-    Button look_for_cynologist;
+    FragmentProfileBinding binding;
 
     ProfileViewModel model;
 
     public static String look_for;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public static ProfileFragment newInstance() {
+        return new ProfileFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        return view;
+    }
 
-        edit_profile_btn = view.findViewById(R.id.edit_profile_btn);
-        profile_image_iv = view.findViewById(R.id.profile_image_iv);
-
-        email_profile = view.findViewById(R.id.email_profile);
-        name_profile = view.findViewById(R.id.name_profile);
-        surname_profile = view.findViewById(R.id.surname_profile);
-        phone_profile = view.findViewById(R.id.phone_profile);
-        age_profile = view.findViewById(R.id.age_profile);
-
-        look_for_client = view.findViewById(R.id.look_for_client);
-        look_for_cynologist = view.findViewById(R.id.look_for_cynologist);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         if (look_for != null){
             changeColorLookFor();
@@ -73,14 +60,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onChanged(List<ProfileModel> profileModels) {
                 if (profileModels.size() != 0){
-                    email_profile.setText(profileModels.get(profileModels.size() - 1).getEmail());
-                    name_profile.setText(profileModels.get(profileModels.size() - 1).getName());
-                    surname_profile.setText(profileModels.get(profileModels.size() - 1).getSurname());
-                    phone_profile.setText(profileModels.get(profileModels.size() - 1).getPhone());
-                    age_profile.setText(profileModels.get(profileModels.size() - 1).getAge());
+                    binding.emailProfile.setText(profileModels.get(profileModels.size() - 1).getEmail());
+                    binding.nameProfile.setText(profileModels.get(profileModels.size() - 1).getName());
+                    binding.surnameProfile.setText(profileModels.get(profileModels.size() - 1).getSurname());
+                    binding.phoneProfile.setText(profileModels.get(profileModels.size() - 1).getPhone());
+                    binding.ageProfile.setText(profileModels.get(profileModels.size() - 1).getAge());
                     if (profileModels.get(profileModels.size() - 1).getImage() != null){
-                        profile_image_iv.setBackground(null);
-                        profile_image_iv.setImageURI(Uri.parse(profileModels.get(profileModels.size() - 1).getImage()));
+                        binding.profileImageIv.setBackground(null);
+                        binding.profileImageIv.setImageURI(Uri.parse(profileModels.get(profileModels.size() - 1).getImage()));
                     }
                 }
 
@@ -89,34 +76,33 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        edit_profile_btn.setOnClickListener(new View.OnClickListener() {
+        binding.editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 replaceFragment(new EditProfileFragment());
             }
         });
 
-        look_for_client.setOnClickListener(new View.OnClickListener() {
+        binding.lookForClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_200));
-                look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_500));
+                binding.lookForClient.setBackgroundColor(binding.lookForClient.getContext().getResources().getColor(R.color.purple_200));
+                binding.lookForCynologist.setBackgroundColor(binding.lookForCynologist.getContext().getResources().getColor(R.color.purple_500));
                 look_for = "client";
             }
         });
 
-        look_for_cynologist.setOnClickListener(new View.OnClickListener() {
+        binding.lookForCynologist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_200));
-                look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_500));
+                binding.lookForCynologist.setBackgroundColor(binding.lookForCynologist.getContext().getResources().getColor(R.color.purple_200));
+                binding.lookForClient.setBackgroundColor(binding.lookForClient.getContext().getResources().getColor(R.color.purple_500));
                 look_for = "cynologist";
             }
         });
-        return view;
     }
 
-    public void replaceFragment(Fragment fragment){
+        public void replaceFragment(Fragment fragment){
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.frame, fragment);
@@ -125,11 +111,11 @@ public class ProfileFragment extends Fragment {
 
     public void changeColorLookFor(){
         if (look_for.equals("client")){
-            look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_500));
-            look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_200));
+            binding.lookForClient.setBackgroundColor(binding.lookForClient.getContext().getResources().getColor(R.color.purple_500));
+            binding.lookForCynologist.setBackgroundColor(binding.lookForCynologist.getContext().getResources().getColor(R.color.purple_200));
         } else if (look_for.equals("cynologist")){
-            look_for_cynologist.setBackgroundColor(look_for_cynologist.getContext().getResources().getColor(R.color.purple_500));
-            look_for_client.setBackgroundColor(look_for_client.getContext().getResources().getColor(R.color.purple_200));
+            binding.lookForCynologist.setBackgroundColor(binding.lookForCynologist.getContext().getResources().getColor(R.color.purple_500));
+            binding.lookForClient.setBackgroundColor(binding.lookForClient.getContext().getResources().getColor(R.color.purple_200));
         }
     }
 

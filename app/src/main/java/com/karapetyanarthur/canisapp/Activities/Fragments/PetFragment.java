@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,65 +26,55 @@ import com.karapetyanarthur.canisapp.Data.Model.PetModel;
 import com.karapetyanarthur.canisapp.R;
 import com.karapetyanarthur.canisapp.ViewModel.PetViewModel;
 import com.karapetyanarthur.canisapp.ViewModel.ProfileViewModel;
+import com.karapetyanarthur.canisapp.databinding.FragmentEditPetBinding;
+import com.karapetyanarthur.canisapp.databinding.FragmentPetBinding;
 
 import java.util.List;
 
 public class PetFragment extends Fragment {
 
-    ImageView pet_image_iv;
-    TextView nickname_pet;
-    TextView breed_pet;
-    TextView age_pet;
-    Button edit_pet_btn;
+    FragmentPetBinding binding;
 
     PetViewModel model;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public static PetFragment newInstance() {
+        return new PetFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pet, container, false);
+        binding = FragmentPetBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        return view;
+    }
 
-        pet_image_iv = view.findViewById(R.id.pet_image_iv);
-        nickname_pet = view.findViewById(R.id.nickname_pet);
-        breed_pet = view.findViewById(R.id.breed_pet);
-        age_pet = view.findViewById(R.id.age_pet);
-        edit_pet_btn = view.findViewById(R.id.edit_pet_btn);
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         model = new ViewModelProvider(this).get(PetViewModel.class);
 
         model.getAllPet().observe(getViewLifecycleOwner(), new Observer<List<PetModel>>() {
             @Override
             public void onChanged(List<PetModel> petModels) {
                 if (petModels.size() != 0){
-                    nickname_pet.setText(petModels.get(petModels.size() - 1).getNickname());
-                    breed_pet.setText(petModels.get(petModels.size() - 1).getBreed());
-                    age_pet.setText(petModels.get(petModels.size() - 1).getAge());
+                    binding.nicknamePet.setText(petModels.get(petModels.size() - 1).getNickname());
+                    binding.breedPet.setText(petModels.get(petModels.size() - 1).getBreed());
+                    binding.agePet.setText(petModels.get(petModels.size() - 1).getAge());
                     if (petModels.get(petModels.size() - 1).getImage() != null){
-                        pet_image_iv.setBackground(null);
-                        pet_image_iv.setImageURI(Uri.parse(petModels.get(petModels.size() - 1).getImage()));
+                        binding.petImageIv.setBackground(null);
+                        binding.petImageIv.setImageURI(Uri.parse(petModels.get(petModels.size() - 1).getImage()));
                     }
                 }
-
-                Log.d("User_Data", String.valueOf(petModels.size()));
-
             }
         });
 
-        edit_pet_btn.setOnClickListener(new View.OnClickListener() {
+        binding.editPetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 replaceFragment(new EditPetFragment());
             }
         });
-
-        return view;
     }
-
-    public void replaceFragment(Fragment fragment){
+        public void replaceFragment(Fragment fragment){
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.frame, fragment);

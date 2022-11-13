@@ -1,70 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/activity_background_clr"
     tools:context=".Activities.Fragments.EditProfileFragment">
 
     <ImageView
-        android:id="@+id/profile_image_iv"
+        android:id="@+id/profileImageIv"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
-        android:layout_gravity="center"
         android:background="@drawable/profile_icon" />
 
     <Button
-        android:id="@+id/change_profile_image_btn"
+        android:id="@+id/changeProfileImageBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/profileImageIv"
         android:layout_marginTop="5dp"
-        android:layout_gravity="center"
         android:text="Поменять фото" />
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/emailRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/changeProfileImageBtn"
+        android:layout_marginTop="40dp">
 
         <TextView
-            android:id="@+id/text_email_profile"
+            android:id="@+id/textEmailProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Почта : "
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/Info_Constraint"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold"/>
 
         <EditText
-            android:id="@+id/email_profile_et"
+            android:id="@+id/emailProfileEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textEmailProfile"
+            android:layout_centerVertical="true"
             android:ems="10"
             android:inputType="textEmailAddress"
             android:hint="Email"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/nameRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/emailRel"
+        android:layout_marginTop="5dp">
 
         <TextView
-            android:id="@+id/text_name_profile"
+            android:id="@+id/textNameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Имя : "
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -72,26 +76,30 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/name_profile_et"
+            android:id="@+id/nameProfileEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textNameProfile"
+            android:layout_centerVertical="true"
             android:ems="10"
             android:inputType="textCapSentences"
             android:hint="Имя"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/surnameRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/nameRel"
+        android:layout_marginTop="5dp">
 
         <TextView
-            android:id="@+id/text_surname_profile"
+            android:id="@+id/textSurnameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Фамилия :"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -99,55 +107,61 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/surname_profile_et"
+            android:id="@+id/surnameProfileEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textSurnameProfile"
+            android:layout_centerVertical="true"
             android:ems="10"
             android:inputType="textCapSentences"
             android:hint="Фамилия"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/phoneRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/surnameRel"
+        android:layout_marginTop="5dp">
 
         <TextView
-            android:id="@+id/text_phone_profile"
+            android:id="@+id/textPhoneProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Телефон : "
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/text_surname_profile"
-            app:layout_constraintTop_toBottomOf="@+id/surname_profile" />
+            android:textStyle="bold"/>
 
         <EditText
-            android:id="@+id/phone_profile_et"
+            android:id="@+id/phoneProfileEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textPhoneProfile"
+            android:layout_centerVertical="true"
             android:ems="10"
-            android:inputType="phone"
-            android:hint="Номер телефона"/>
+            android:hint="Номер телефона"
+            android:inputType="phone" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/ageRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/phoneRel"
+        android:layout_marginTop="5dp">
 
         <TextView
-            android:id="@+id/text_age_profile"
+            android:id="@+id/textAgeProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Возраст : "
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -155,22 +169,25 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/age_profile_et"
+            android:id="@+id/ageProfileEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textAgeProfile"
+            android:layout_centerVertical="true"
             android:ems="10"
             android:inputType="phone"
             android:hint="Возраст"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <Button
-        android:id="@+id/save_changes_btn"
+        android:id="@+id/saveChangesBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ageRel"
         android:layout_marginTop="10dp"
         android:text="Сохранить" />
 
 
-</LinearLayout>
+</RelativeLayout>

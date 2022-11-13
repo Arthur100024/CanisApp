@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/activity_background_clr"
     tools:context=".Activities.Fragments.ProfileFragment">
 
     <ImageView
-        android:id="@+id/profile_image_iv"
+        android:id="@+id/profileImageIv"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
-        android:layout_gravity="center"
         android:background="@drawable/profile_icon" />
 
     <TextView
+        android:id="@+id/infoTv"
         android:layout_width="236dp"
         android:layout_height="32dp"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/profileImageIv"
         android:layout_marginTop="20dp"
         android:text="Личные данные"
         android:textAlignment="center"
@@ -28,17 +29,19 @@
         android:textSize="24sp"
         android:textStyle="bold"/>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/emailRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/infoTv"
+        android:layout_marginTop="40dp">
 
         <TextView
-            android:id="@+id/text_email_profile"
+            android:id="@+id/textEmailProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Почта : "
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -46,27 +49,31 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/email_profile"
+            android:id="@+id/emailProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textEmailProfile"
+            android:layout_centerVertical="true"
             android:text="@string/no_information"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/nameRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/emailRel"
+        android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/text_name_profile"
+            android:id="@+id/textNameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Имя : "
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -74,27 +81,31 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/name_profile"
+            android:id="@+id/nameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textNameProfile"
+            android:layout_centerVertical="true"
             android:text="@string/no_information"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/surnameRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/nameRel"
+        android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/text_surname_profile"
+            android:id="@+id/textSurnameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Фамилия :"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -102,58 +113,63 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/surname_profile"
+            android:id="@+id/surnameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textSurnameProfile"
+            android:layout_centerVertical="true"
             android:layout_marginStart="5dp"
             android:text="@string/no_information"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/phoneRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/surnameRel"
+        android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/text_phone_profile"
+            android:id="@+id/textPhoneProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Телефон : "
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/text_surname_profile"
-            app:layout_constraintTop_toBottomOf="@+id/surname_profile" />
-
+            android:textStyle="bold"/>
         <TextView
-            android:id="@+id/phone_profile"
+            android:id="@+id/phoneProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textPhoneProfile"
+            android:layout_centerVertical="true"
             android:text="@string/no_information"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/ageRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/phoneRel"
+        android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/text_age_profile"
+            android:id="@+id/textAgeProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="Возраст : "
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -161,57 +177,64 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/age_profile"
+            android:id="@+id/ageProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textAgeProfile"
+            android:layout_centerVertical="true"
             android:text="@string/no_information"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <Button
-        android:id="@+id/edit_profile_btn"
+        android:id="@+id/editProfileBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ageRel"
         android:layout_marginTop="10dp"
         android:text="Изменить" />
 
     <TextView
+        android:id="@+id/infoLookFor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editProfileBtn"
         android:text="Кого вы ищете?"
         android:textAlignment="center"
         android:layout_marginTop="20dp"
         android:textColor="@color/black"
         android:textSize="20sp"/>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/lookForRel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/infoLookFor"
+        android:layout_marginTop="10dp">
 
         <Button
-            android:id="@+id/look_for_client"
+            android:id="@+id/lookForClient"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:text="Клиента" />
 
         <Button
-            android:id="@+id/look_for_cynologist"
+            android:id="@+id/lookForCynologist"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_toRightOf="@+id/lookForClient"
+            android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:text="Кинолога" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

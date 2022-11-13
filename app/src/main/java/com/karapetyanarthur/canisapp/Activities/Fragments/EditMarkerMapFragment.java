@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,8 +19,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.karapetyanarthur.canisapp.Activities.NavigationActivity;
+import com.karapetyanarthur.canisapp.Activities.Registration.MapSetLocFragment;
 import com.karapetyanarthur.canisapp.MyLocationListener;
 import com.karapetyanarthur.canisapp.R;
+import com.karapetyanarthur.canisapp.databinding.FragmentEditMarkerMapBinding;
+import com.karapetyanarthur.canisapp.databinding.FragmentRegNameSurnameBinding;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
@@ -33,12 +37,16 @@ import com.yandex.runtime.image.ImageProvider;
 
 public class EditMarkerMapFragment extends Fragment {
 
-    private MapView edit_marker_mapview;
-    Button save_marker_change;
     private final Point TARGET_LOCATION = new Point(MyLocationListener.my_latitude,MyLocationListener.my_longitude);
 
     private MapObjectCollection myMarkerMapObject;
     PlacemarkMapObject myPlacemark;
+
+    FragmentEditMarkerMapBinding binding;
+
+    public static EditMarkerMapFragment newInstance() {
+        return new EditMarkerMapFragment();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,32 +60,31 @@ public class EditMarkerMapFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_edit_marker_map, container, false);
+        binding = FragmentEditMarkerMapBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        return view;
+    }
 
-        edit_marker_mapview = (MapView) view.findViewById(R.id.edit_marker_mapview);
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         changeMapMarker();
-
-        save_marker_change = view.findViewById(R.id.save_marker_change);
-        save_marker_change.setOnClickListener(new View.OnClickListener() {
+        binding.saveMarkerChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 replaceFragment(new MapFragment());
             }
         });
-        return view;
     }
-
-    @Override
+        @Override
     public void onStart() {
         super.onStart();
         MapKitFactory.getInstance().onStart();
-        edit_marker_mapview.onStart();
+        binding.editMarkerMapview.onStart();
     }
 
     @Override
     public void onStop() {
-        edit_marker_mapview.onStop();
+        binding.editMarkerMapview.onStop();
         MapKitFactory.getInstance().onStop();
         super.onStop();
     }
@@ -92,7 +99,7 @@ public class EditMarkerMapFragment extends Fragment {
 //ИЗМЕНЕНИЕ МЕСТОПОЛОЖЕНИЯ ___ НАЧАЛО
     public void changeMapMarker(){
 
-        myMarkerMapObject = edit_marker_mapview.getMap().getMapObjects().addCollection();
+        myMarkerMapObject = binding.editMarkerMapview.getMap().getMapObjects().addCollection();
 
         myPlacemark = myMarkerMapObject.addPlacemark(TARGET_LOCATION);
         myPlacemark.setIcon(ImageProvider.fromBitmap(drawMyBitmap("Я")));
@@ -102,7 +109,7 @@ public class EditMarkerMapFragment extends Fragment {
 
 
 
-        edit_marker_mapview.getMap().move(
+        binding.editMarkerMapview.getMap().move(
                 new CameraPosition(myPlacemark.getGeometry(), 18.0f, 0.0f, 0.0f),
                 new Animation(Animation.Type.SMOOTH, 8f),
                 null);
