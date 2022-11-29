@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.karapetyanarthur.canisapp.Activities.Fragments.AboutDogsFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.EditMarkerMapFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.MapFragment;
 import com.karapetyanarthur.canisapp.Activities.Fragments.ProfileFragment;
@@ -57,6 +58,9 @@ public class NavigationActivity extends AppCompatActivity {
                         break;
                     case R.id.profile:
                         replaceFragment(new ProfileFragment());
+                        break;
+                    case R.id.aboutDogs:
+                        replaceFragment(new AboutDogsFragment());
                         break;
                 }
                 return true;

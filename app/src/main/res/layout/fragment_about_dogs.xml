@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_background_clr"
+    tools:context=".Activities.Fragments.AboutDogsFragment">
+
+
+    <EditText
+        android:id="@+id/searchBreedEt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="94dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Breed"
+        android:paddingStart="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:background="@color/white"/>
+
+    <Button
+        android:id="@+id/searchBreedBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/searchBreedEt"
+        android:layout_margin="10dp"
+        android:text="Найти" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAboutDogs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/searchBreedBtn"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"/>
+
+</RelativeLayout>

@@ -11,6 +11,6 @@ import retrofit2.http.Query;
 public interface AboutDogsService {
 
     @GET("v1/images/search?q=")
-    Call<List<DocumentsContract.Root>> listAboutDogs(@Query("breed") String breed);
+    Call<List<DogClass>> listAboutDogs(@Query("breed") String breed);
 
 }
