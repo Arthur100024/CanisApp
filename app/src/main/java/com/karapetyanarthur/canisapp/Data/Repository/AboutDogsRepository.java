@@ -15,6 +15,7 @@ import com.karapetyanarthur.canisapp.Data.retrofit.DogClass;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,17 +40,25 @@ public class AboutDogsRepository {
         aboutDogsService.listAboutDogs(breed).enqueue(new Callback<List<DogClass>>() {
             @Override
             public void onResponse(Call<List<DogClass>> call, Response<List<DogClass>> response) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    result.setValue(response.body().stream().map(constr -> {
-                        AboutDogsModel aboutDogsModel = new AboutDogsModel();
-                        aboutDogsModel.setDescription(constr.name + "\n"
-                                + constr.description + "\n"
-                                + constr.bred_for);
-                        aboutDogsModel.setLifeSpan("living" + constr.life_span + "years");
-                        aboutDogsModel.setHeightAndWeight("height = " + constr.height.metric + "cm" + "\n"
-                                + "weight = " + constr.weight.metric + "cm");
-                        return aboutDogsModel;
-                    }).collect(Collectors.toList()));
+                if (response.isSuccessful()){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        result.setValue(response.body().stream().map(constr -> {
+                            AboutDogsModel aboutDogsModel = new AboutDogsModel();
+                            if (constr.name == null){constr.name = "";}
+                            if (constr.description == null){constr.description = "";}
+                            if (constr.bred_for == null){constr.bred_for = "";}
+                            if (constr.life_span == null){constr.life_span = "";}
+                            if (constr.height.metric == null){constr.height.metric = "";}
+                            if (constr.weight.metric == null){constr.weight.metric = "";}
+                            aboutDogsModel.setDescription(constr.name + "\n"
+                                    + constr.description + "\n"
+                                    + constr.bred_for);
+                            aboutDogsModel.setLifeSpan("living " + constr.life_span);
+                            aboutDogsModel.setHeightAndWeight("height = " + constr.height.metric + " cm" + "\n"
+                                    + "weight = " + constr.weight.metric + " cm");
+                            return aboutDogsModel;
+                        }).collect(Collectors.toList()));
+                    }
                 }
             }
 
@@ -59,5 +68,9 @@ public class AboutDogsRepository {
             }
         });
         return result;
+
+    }
+
+    public static void infoChecking(){
     }
 }

@@ -44,7 +44,7 @@ public class AboutDogsAdapter extends RecyclerView.Adapter<AboutDogsAdapter.Abou
 
     @NonNull
     @Override
-    public AboutDogsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AboutDogsAdapter.AboutDogsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ListAboutDogsBinding binding = ListAboutDogsBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new AboutDogsViewHolder(binding);
     }

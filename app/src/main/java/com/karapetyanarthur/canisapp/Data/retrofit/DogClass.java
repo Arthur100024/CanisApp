@@ -14,6 +14,4 @@ public class DogClass {
     public String description;
     public String history;
     public String country_code;
-
-
 }

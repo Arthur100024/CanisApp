@@ -50,17 +50,12 @@ public class AboutDogsFragment extends Fragment {
         /*Bundle bundle = this.getArguments();
         String breedDog = bundle.getString("breedDog");*/
 
-        binding.searchBreedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                aboutDogsViewModel.getInfo(binding.searchBreedEt.getText().toString()).observe(getViewLifecycleOwner(), new Observer<List<AboutDogsModel>>() {
-                    @Override
-                    public void onChanged(List<AboutDogsModel> aboutDogsModels) {
-                        aboutDogsAdapter.setInfoAboutDogs(aboutDogsModels);
-                    }
-                });
-            }
-        });
+        binding.searchBreedBtn.setOnClickListener(
+                view1 -> aboutDogsViewModel.getInfo(binding.searchBreedEt.getText().toString()).observe(getViewLifecycleOwner(), aboutDogsModels -> {
+            System.out.println(aboutDogsModels.size());
+            aboutDogsAdapter.setInfoAboutDogs(aboutDogsModels);
+        }));
+
     }
 
     /*@Override
